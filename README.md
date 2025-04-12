@@ -33,7 +33,7 @@ This node is built using [n8n-openapi-node](https://github.com/devlikeapro/n8n-o
 To make changes to the API, update the `openapi-source/*.yaml` files and then run the following command:
 
 ```
-redocly bundle openapi-source/openapi.yaml -o nodes/openapi.json
+redocly bundle openapi-source/openapi.yaml -o nodes/Basecamp4/openapi.json
 ```
 
 ### Testing Locally

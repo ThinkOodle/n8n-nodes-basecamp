@@ -39,7 +39,7 @@
 			"dist/credentials/Basecamp4OAuth2Api.credentials.ts"
 		],
 		"nodes": [
-			"dist/nodes/Basecamp4.node.json"
+			"dist/nodes/Basecamp4/Basecamp4.node.json"
 		]
 	},
 	"devDependencies": {

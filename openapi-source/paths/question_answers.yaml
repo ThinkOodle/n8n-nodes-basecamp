@@ -1,0 +1,70 @@
+# Question Answers paths
+question_answers:
+  get:
+    tags:
+      - Question Answers
+    summary: Get question answers
+    description: Returns a paginated list of answers to a specific question
+    operationId: getQuestionAnswers
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: questionId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the question
+    responses:
+      '200':
+        description: List of answers
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/question_answers.yaml#/QuestionAnswer"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified question does not exist
+                
+question_answer:
+  get:
+    tags:
+      - Question Answers
+    summary: Get a question answer
+    description: Returns a specific answer to a question
+    operationId: getQuestionAnswer
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: answerId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the answer
+    responses:
+      '200':
+        description: The answer
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/question_answers.yaml#/QuestionAnswer"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this answer
+      '404':
+        description: Not Found - Specified answer does not exist

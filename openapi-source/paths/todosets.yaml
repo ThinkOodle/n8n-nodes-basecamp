@@ -1,0 +1,34 @@
+# To-do Sets paths
+todoset:
+  get:
+    tags:
+      - Todosets
+    summary: Get to-do set
+    description: Returns the to-do set for the specified project
+    operationId: getTodoset
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todosetId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do set
+    responses:
+      '200':
+        description: The to-do set
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/todosets.yaml#/Todoset"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this to-do set
+      '404':
+        description: Not Found - Specified to-do set does not exist

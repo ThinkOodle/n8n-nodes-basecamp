@@ -1,0 +1,34 @@
+# Questionnaires paths
+questionnaire:
+  get:
+    tags:
+      - Questionnaires
+    summary: Get questionnaire
+    description: Returns the questionnaire for the project
+    operationId: getQuestionnaire
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: questionnaireId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the questionnaire
+    responses:
+      '200':
+        description: The questionnaire
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/questionnaires.yaml#/Questionnaire"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this questionnaire
+      '404':
+        description: Not Found - Specified questionnaire does not exist

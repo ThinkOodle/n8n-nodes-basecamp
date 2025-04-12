@@ -1,0 +1,265 @@
+# To-dos paths
+todos:
+  get:
+    tags:
+      - Todos
+    summary: Get to-dos
+    description: Returns a list of to-dos in the specified to-do list
+    operationId: getTodos
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todolistId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do list
+      - name: completed
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: ["true", "false"]
+        description: Filter todos by completion status
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Page number for paginated results
+    responses:
+      '200':
+        description: List of to-dos
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/todos.yaml#/Todo"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified to-do list does not exist
+  post:
+    tags:
+      - Todos
+    summary: Create a to-do
+    description: Creates a new to-do in the specified to-do list
+    operationId: createTodo
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todolistId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do list
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/todos.yaml#/CreateTodo"
+    responses:
+      '201':
+        description: The created to-do
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/todos.yaml#/Todo"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create to-dos
+      '404':
+        description: Not Found - Specified to-do list does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+              
+todo:
+  get:
+    tags:
+      - Todos
+    summary: Get a to-do
+    description: Returns details for a specific to-do
+    operationId: getTodo
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todoId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do
+    responses:
+      '200':
+        description: To-do details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/todos.yaml#/Todo"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this to-do
+      '404':
+        description: Not Found - Specified to-do does not exist
+  put:
+    tags:
+      - Todos
+    summary: Update a to-do
+    description: Updates a specific to-do
+    operationId: updateTodo
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todoId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/todos.yaml#/UpdateTodo"
+    responses:
+      '200':
+        description: The updated to-do
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/todos.yaml#/Todo"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this to-do
+      '404':
+        description: Not Found - Specified to-do does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+              
+todo_completion:
+  post:
+    tags:
+      - Todos
+    summary: Complete a to-do
+    description: Marks a to-do as completed
+    operationId: completeTodo
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todoId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do
+    responses:
+      '204':
+        description: The to-do was successfully completed
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to complete this to-do
+      '404':
+        description: Not Found - Specified to-do does not exist
+  delete:
+    tags:
+      - Todos
+    summary: Uncomplete a to-do
+    description: Marks a to-do as uncompleted
+    operationId: uncompleteTodo
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todoId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do
+    responses:
+      '204':
+        description: The to-do was successfully uncompleted
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to uncomplete this to-do
+      '404':
+        description: Not Found - Specified to-do does not exist
+        
+todo_position:
+  put:
+    tags:
+      - Todos
+    summary: Reposition a to-do
+    description: Changes the position of a to-do within its parent list
+    operationId: repositionTodo
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todoId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/todos.yaml#/TodoPosition"
+    responses:
+      '204':
+        description: The to-do was successfully repositioned
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to reposition this to-do
+      '404':
+        description: Not Found - Specified to-do does not exist
+      '422':
+        description: Unprocessable entity (validation failed)

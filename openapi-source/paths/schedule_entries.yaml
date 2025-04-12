@@ -1,0 +1,204 @@
+# Schedule Entries paths
+schedule_entries:
+  get:
+    tags:
+      - Schedule Entries
+    summary: Get schedule entries
+    description: Returns a list of entries in the specified schedule
+    operationId: getScheduleEntries
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: scheduleId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the schedule
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [upcoming, past]
+        description: Filter entries by status
+    responses:
+      '200':
+        description: List of schedule entries
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/schedule_entries.yaml#/ScheduleEntry"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified schedule does not exist
+  post:
+    tags:
+      - Schedule Entries
+    summary: Create a schedule entry
+    description: Creates a new entry in the specified schedule
+    operationId: createScheduleEntry
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: scheduleId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the schedule
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/schedule_entries.yaml#/CreateScheduleEntry"
+    responses:
+      '201':
+        description: The created schedule entry
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/schedule_entries.yaml#/ScheduleEntry"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create schedule entries
+      '404':
+        description: Not Found - Specified schedule does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+              
+schedule_entry:
+  get:
+    tags:
+      - Schedule Entries
+    summary: Get a schedule entry
+    description: Returns details for a specific schedule entry
+    operationId: getScheduleEntry
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: entryId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the schedule entry
+    responses:
+      '200':
+        description: Schedule entry details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/schedule_entries.yaml#/ScheduleEntry"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this schedule entry
+      '404':
+        description: Not Found - Specified schedule entry does not exist
+  put:
+    tags:
+      - Schedule Entries
+    summary: Update a schedule entry
+    description: Updates a specific schedule entry
+    operationId: updateScheduleEntry
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: entryId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the schedule entry
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/schedule_entries.yaml#/UpdateScheduleEntry"
+    responses:
+      '200':
+        description: The updated schedule entry
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/schedule_entries.yaml#/ScheduleEntry"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this schedule entry
+      '404':
+        description: Not Found - Specified schedule entry does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+              
+schedule_entry_occurrence:
+  get:
+    tags:
+      - Schedule Entries
+    summary: Get a schedule entry occurrence
+    description: Returns details for a specific schedule entry occurrence on a date
+    operationId: getScheduleEntryOccurrence
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: entryId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the schedule entry
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+          pattern: "^\\d{4}-\\d{2}-\\d{2}$"
+          example: "2022-05-01"
+        description: The date of the occurrence (YYYY-MM-DD)
+    responses:
+      '200':
+        description: Schedule entry occurrence details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/schedule_entries.yaml#/ScheduleEntry"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this schedule entry occurrence
+      '404':
+        description: Not Found - Specified schedule entry occurrence does not exist

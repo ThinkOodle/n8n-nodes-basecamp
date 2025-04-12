@@ -1,0 +1,94 @@
+# Events schemas
+
+Event:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: The unique identifier for the event
+    recording_id:
+      type: integer
+      description: The ID of the recording that this event belongs to
+    action:
+      type: string
+      description: The type of action that occurred
+      example: created, assignment_changed, completed, uncompleted
+    details:
+      type: object
+      description: Additional details about the event, varies based on the action type
+      additionalProperties: true
+    created_at:
+      type: string
+      format: date-time
+      description: When the event occurred
+    creator:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier for the creator
+        attachable_sgid:
+          type: string
+          description: The globally unique identifier for attaching the creator in rich text
+        name:
+          type: string
+          description: The name of the creator
+        email_address:
+          type: string
+          format: email
+          description: The email address of the creator
+        personable_type:
+          type: string
+          description: The type of person
+          example: User
+        title:
+          type: string
+          description: The job title of the creator
+        bio:
+          type: [string, "null"]
+          description: The biography of the creator
+        location:
+          type: [string, "null"]
+          description: The location of the creator
+        created_at:
+          type: string
+          format: date-time
+          description: When the creator was created
+        updated_at:
+          type: string
+          format: date-time
+          description: When the creator was last updated
+        admin:
+          type: boolean
+          description: Whether the creator is an admin
+        owner:
+          type: boolean
+          description: Whether the creator is an owner
+        client:
+          type: boolean
+          description: Whether the creator is a client
+        employee:
+          type: boolean
+          description: Whether the creator is an employee
+        time_zone:
+          type: string
+          description: The time zone of the creator
+        avatar_url:
+          type: string
+          format: uri
+          description: The URL for the creator's avatar
+        company:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: The unique identifier for the company
+            name:
+              type: string
+              description: The name of the company
+        can_manage_projects:
+          type: boolean
+          description: Whether the creator can manage projects
+        can_manage_people:
+          type: boolean
+          description: Whether the creator can manage people

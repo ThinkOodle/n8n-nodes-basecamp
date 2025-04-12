@@ -1,0 +1,152 @@
+# Webhooks paths
+webhooks:
+  get:
+    tags:
+      - Webhooks
+    summary: Get webhooks
+    description: Returns a list of webhooks in the specified project
+    operationId: getWebhooks
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+    responses:
+      '200':
+        description: List of webhooks
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/webhooks.yaml#/Webhook"
+      '404':
+        description: Project not found
+  post:
+    tags:
+      - Webhooks
+    summary: Create a webhook
+    description: Creates a new webhook in the specified project
+    operationId: createWebhook
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/webhooks.yaml#/CreateWebhook"
+    responses:
+      '201':
+        description: The created webhook
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/webhooks.yaml#/Webhook"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create webhooks
+      '404':
+        description: Project not found
+      '422':
+        description: Unprocessable entity (validation failed)
+      '507':
+        description: Account webhook limit reached
+
+webhook:
+  get:
+    tags:
+      - Webhooks
+    summary: Get a webhook
+    description: Returns details for a specific webhook including recent deliveries
+    operationId: getWebhook
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the webhook
+    responses:
+      '200':
+        description: Webhook details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/webhooks.yaml#/WebhookWithDeliveries"
+      '404':
+        description: Webhook or project not found
+  put:
+    tags:
+      - Webhooks
+    summary: Update a webhook
+    description: Updates a specific webhook
+    operationId: updateWebhook
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the webhook
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/webhooks.yaml#/UpdateWebhook"
+    responses:
+      '200':
+        description: The updated webhook
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/webhooks.yaml#/Webhook"
+      '404':
+        description: Webhook or project not found
+  delete:
+    tags:
+      - Webhooks
+    summary: Delete a webhook
+    description: Permanently deletes a webhook
+    operationId: deleteWebhook
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the webhook
+    responses:
+      '204':
+        description: The webhook was successfully deleted
+      '404':
+        description: Webhook or project not found

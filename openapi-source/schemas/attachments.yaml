@@ -1,0 +1,11 @@
+# Attachments schemas
+AttachmentResponse:
+  type: object
+  required:
+    - attachable_sgid
+  properties:
+    attachable_sgid:
+      type: string
+      description: >-
+        Global unique identifier for the attachment that can be used in
+        other endpoints

@@ -1,0 +1,145 @@
+# To-do Lists schemas
+Todolist:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: Unique identifier for the todolist.
+    status:
+      type: string
+      enum: [active, archived, trashed]
+      description: Status of the todolist.
+    visible_to_clients:
+      type: boolean
+      description: Whether the todolist is visible to clients.
+    created_at:
+      type: string
+      format: date-time
+      description: When the todolist was created.
+    updated_at:
+      type: string
+      format: date-time
+      description: When the todolist was last updated.
+    title:
+      type: string
+      description: Title of the todolist.
+    inherits_status:
+      type: boolean
+      description: Whether the todolist inherits status from its parent.
+    type:
+      type: string
+      description: Type identifier of the resource.
+      enum: [Todolist]
+    url:
+      type: string
+      format: uri
+      description: URL to access the todolist via the API.
+    app_url:
+      type: string
+      format: uri
+      description: URL to access the todolist in the Basecamp web app.
+    bookmark_url:
+      type: string
+      format: uri
+      description: URL to bookmark the todolist.
+    subscription_url:
+      type: string
+      format: uri
+      description: URL to access the todolist subscription.
+    comments_count:
+      type: integer
+      description: Number of comments on the todolist.
+    comments_url:
+      type: string
+      format: uri
+      description: URL to access the todolist comments.
+    position:
+      type: integer
+      description: Position of the todolist relative to other todolists.
+    parent:
+      type: object
+      description: Parent todoset information.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+          enum: [Todoset]
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+    bucket:
+      type: object
+      description: Project information.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    description:
+      type: string
+      description: Description of the todolist. May contain HTML.
+    completed:
+      type: boolean
+      description: Whether all todos in the todolist are completed.
+    completed_ratio:
+      type: string
+      description: Ratio of completed todos to total todos.
+    name:
+      type: string
+      description: Name of the todolist (same as title).
+    todos_url:
+      type: string
+      format: uri
+      description: URL to access the todos in the todolist.
+    groups_url:
+      type: string
+      format: uri
+      description: URL to access the groups in the todolist.
+    app_todos_url:
+      type: string
+      format: uri
+      description: URL to access the todos in the web app.
+  required:
+    - id
+    - title
+    - status
+    - type
+
+CreateTodolist:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of the todolist.
+      example: "Launch"
+    description:
+      type: string
+      description: Optional description of the todolist. May contain HTML.
+      example: "<div><em>Finish it!</em></div>"
+  required:
+    - name
+
+UpdateTodolist:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of the todolist.
+      example: "Relaunch"
+    description:
+      type: string
+      description: Description of the todolist. May contain HTML.
+      example: "<div><strong>Try this again.</strong></div>"
+  required:
+    - name

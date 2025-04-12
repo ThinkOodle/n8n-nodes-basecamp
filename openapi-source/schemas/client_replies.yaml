@@ -1,0 +1,153 @@
+# Client replies schemas
+
+ClientReply:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: The unique identifier for the client reply
+    status:
+      type: string
+      enum: [active, archived, trashed]
+      description: The status of the reply
+    visible_to_clients:
+      type: boolean
+      description: Whether the reply is visible to clients
+    created_at:
+      type: string
+      format: date-time
+      description: When the reply was created
+    updated_at:
+      type: string
+      format: date-time
+      description: When the reply was last updated
+    title:
+      type: string
+      description: The title of the reply
+    inherits_status:
+      type: boolean
+      description: Whether the reply inherits its status from its parent
+    type:
+      type: string
+      description: The type of the recording
+      example: Client::Reply
+    url:
+      type: string
+      format: uri
+      description: The API URL for the reply
+    app_url:
+      type: string
+      format: uri
+      description: The web URL for the reply in Basecamp
+    bookmark_url:
+      type: string
+      format: uri
+      description: The URL to bookmark the reply
+    parent:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier for the parent recording
+        title:
+          type: string
+          description: The title of the parent recording
+        type:
+          type: string
+          description: The type of the parent recording
+          example: Client::Correspondence
+        url:
+          type: string
+          format: uri
+          description: The API URL for the parent recording
+        app_url:
+          type: string
+          format: uri
+          description: The web URL for the parent recording in Basecamp
+    bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier for the bucket (project)
+        name:
+          type: string
+          description: The name of the bucket (project)
+        type:
+          type: string
+          description: The type of the bucket
+          example: Project
+    creator:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier for the creator
+        attachable_sgid:
+          type: string
+          description: The globally unique identifier for attaching the creator in rich text
+        name:
+          type: string
+          description: The name of the creator
+        email_address:
+          type: string
+          format: email
+          description: The email address of the creator
+        personable_type:
+          type: string
+          description: The type of person
+          example: User
+        title:
+          type: string
+          description: The job title of the creator
+        bio:
+          type: [string, "null"]
+          description: The biography of the creator
+        location:
+          type: [string, "null"]
+          description: The location of the creator
+        created_at:
+          type: string
+          format: date-time
+          description: When the creator was created
+        updated_at:
+          type: string
+          format: date-time
+          description: When the creator was last updated
+        admin:
+          type: boolean
+          description: Whether the creator is an admin
+        owner:
+          type: boolean
+          description: Whether the creator is an owner
+        client:
+          type: boolean
+          description: Whether the creator is a client
+        employee:
+          type: boolean
+          description: Whether the creator is an employee
+        time_zone:
+          type: string
+          description: The time zone of the creator
+        avatar_url:
+          type: string
+          format: uri
+          description: The URL for the creator's avatar
+        company:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: The unique identifier for the company
+            name:
+              type: string
+              description: The name of the company
+        can_manage_projects:
+          type: boolean
+          description: Whether the creator can manage projects
+        can_manage_people:
+          type: boolean
+          description: Whether the creator can manage people
+    content:
+      type: string
+      description: The rich text content of the reply in HTML format

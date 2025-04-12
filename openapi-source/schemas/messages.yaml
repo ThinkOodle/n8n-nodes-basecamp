@@ -1,0 +1,141 @@
+# Messages schemas
+Message:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: Unique identifier for the message.
+    status:
+      type: string
+      enum: [active, archived, trashed]
+      description: Status of the message.
+    visible_to_clients:
+      type: boolean
+      description: Whether the message is visible to clients.
+    created_at:
+      type: string
+      format: date-time
+      description: When the message was created.
+    updated_at:
+      type: string
+      format: date-time
+      description: When the message was last updated.
+    title:
+      type: string
+      description: Title of the message.
+    inherits_status:
+      type: boolean
+      description: Whether the message inherits status from its parent.
+    type:
+      type: string
+      description: Type identifier of the resource.
+      enum: [Message]
+    url:
+      type: string
+      format: uri
+      description: URL to access the message via the API.
+    app_url:
+      type: string
+      format: uri
+      description: URL to access the message in the Basecamp web app.
+    bookmark_url:
+      type: string
+      format: uri
+      description: URL to bookmark the message.
+    subscription_url:
+      type: string
+      format: uri
+      description: URL to access the message subscription.
+    comments_count:
+      type: integer
+      description: Number of comments on the message.
+    comments_url:
+      type: string
+      format: uri
+      description: URL to access the message comments.
+    parent:
+      type: object
+      description: Parent message board information.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+          enum: [Message::Board]
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+    bucket:
+      type: object
+      description: Project information.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    content:
+      type: string
+      description: The content of the message. May contain HTML.
+    subject:
+      type: string
+      description: The subject/title of the message.
+  required:
+    - id
+    - subject
+    - status
+    - type
+
+CreateMessage:
+  type: object
+  properties:
+    subject:
+      type: string
+      description: The title of the message.
+      example: "Kickoff"
+    content:
+      type: string
+      description: The body of the message. May contain HTML.
+      example: "<div><strong>Welcome to Basecamp, everyone.</strong></div>"
+    status:
+      type: string
+      enum: [active, draft]
+      description: Set to active to publish immediately.
+      example: "active"
+    category_id:
+      type: integer
+      description: Optional. The ID of the message type/category.
+    subscriptions:
+      type: array
+      description: Optional. IDs of people to be notified of the new message.
+      items:
+        type: integer
+  required:
+    - subject
+    - status
+
+UpdateMessage:
+  type: object
+  properties:
+    subject:
+      type: string
+      description: The title of the message.
+      example: "Spin-down"
+    content:
+      type: string
+      description: The body of the message. May contain HTML.
+      example: "<div><strong>Oops, we lost that client.</strong></div>"
+    category_id:
+      type: integer
+      description: Optional. The ID of the message type/category.
+  required:
+    - subject

@@ -1,0 +1,19 @@
+# Subscriptions schemas
+Subscription:
+  type: object
+  properties:
+    subscribed:
+      type: boolean
+      description: Whether the current user is subscribed
+    count:
+      type: integer
+      description: Number of subscribers
+    url:
+      type: string
+      format: uri
+      description: URL for managing subscriptions
+    subscribers:
+      type: array
+      items:
+        $ref: "./people.yaml#/Person"
+      description: List of subscribers

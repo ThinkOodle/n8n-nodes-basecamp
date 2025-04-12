@@ -1,0 +1,166 @@
+# Comments paths
+comments:
+  get:
+    tags:
+      - Comments
+    summary: Get comments
+    description: Returns a list of comments for the specified recording
+    operationId: getComments
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: recordingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the recording
+    responses:
+      '200':
+        description: List of comments
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/comments.yaml#/Comment"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified recording does not exist
+  post:
+    tags:
+      - Comments
+    summary: Create a comment
+    description: Creates a new comment on the specified recording
+    operationId: createComment
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: recordingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the recording
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/comments.yaml#/CreateComment"
+    responses:
+      '201':
+        description: The created comment
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/comments.yaml#/Comment"
+        headers:
+          Location:
+            description: URL to the created comment
+            schema:
+              type: string
+              format: uri
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create comments
+      '404':
+        description: Not Found - Specified recording does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+              
+comment:
+  get:
+    tags:
+      - Comments
+    summary: Get a comment
+    description: Returns details for a specific comment
+    operationId: getComment
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the comment
+    responses:
+      '200':
+        description: Comment details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/comments.yaml#/Comment"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this comment
+      '404':
+        description: Not Found - Specified comment does not exist
+  put:
+    tags:
+      - Comments
+    summary: Update a comment
+    description: Updates a specific comment
+    operationId: updateComment
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the comment
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/comments.yaml#/UpdateComment"
+    responses:
+      '200':
+        description: The updated comment
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/comments.yaml#/Comment"
+        headers:
+          Location:
+            description: URL to the comment
+            schema:
+              type: string
+              format: uri
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this comment
+      '404':
+        description: Not Found - Specified comment does not exist
+      '422':
+        description: Unprocessable entity (validation failed)

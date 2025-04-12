@@ -1,0 +1,170 @@
+# Message Types paths
+message_types:
+  get:
+    tags:
+      - Message Types
+    summary: Get message types
+    description: Returns all message types in the specified project
+    operationId: getMessageTypes
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+    responses:
+      '200':
+        description: List of message types
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/message_types.yaml#/MessageType"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified project does not exist
+  post:
+    tags:
+      - Message Types
+    summary: Create a message type
+    description: Creates a new message type in the specified project
+    operationId: createMessageType
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/message_types.yaml#/CreateMessageType"
+    responses:
+      '201':
+        description: The created message type
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/message_types.yaml#/MessageType"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create message types
+      '404':
+        description: Not Found - Specified project does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+              
+message_type:
+  get:
+    tags:
+      - Message Types
+    summary: Get a message type
+    description: Returns a specific message type
+    operationId: getMessageType
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the message type (category)
+    responses:
+      '200':
+        description: The message type
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/message_types.yaml#/MessageType"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this message type
+      '404':
+        description: Not Found - Specified message type does not exist
+  put:
+    tags:
+      - Message Types
+    summary: Update a message type
+    description: Updates a specific message type
+    operationId: updateMessageType
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the message type (category)
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/message_types.yaml#/UpdateMessageType"
+    responses:
+      '200':
+        description: The updated message type
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/message_types.yaml#/MessageType"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this message type
+      '404':
+        description: Not Found - Specified message type does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+  delete:
+    tags:
+      - Message Types
+    summary: Destroy a message type
+    description: Deletes a specific message type
+    operationId: destroyMessageType
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the message type (category)
+    responses:
+      '204':
+        description: Message type successfully deleted
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to delete this message type
+      '404':
+        description: Not Found - Specified message type does not exist

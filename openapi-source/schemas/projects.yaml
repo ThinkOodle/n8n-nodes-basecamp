@@ -1,0 +1,136 @@
+# Projects schemas
+Project:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: Unique identifier for the project.
+    name:
+      type: string
+      description: Name of the project.
+    description:
+      type: string
+      description: Optional description of the project.
+    status:
+      type: string
+      description: Status of the project.
+      enum:
+        - active
+        - archived
+        - trashed
+    created_at:
+      type: string
+      format: date-time
+      description: Timestamp when the project was created.
+    updated_at:
+      type: string
+      format: date-time
+      description: Timestamp when the project was last updated.
+    purpose:
+      type: string
+      description: The purpose of the project.
+    clients_enabled:
+      type: boolean
+      description: Whether clients are enabled for this project.
+    bookmark_url:
+      type: string
+      format: uri
+      description: URL to bookmark the project.
+    url:
+      type: string
+      format: uri
+      description: API URL for the project.
+    app_url:
+      type: string
+      format: uri
+      description: Web application URL for the project.
+    dock:
+      type: array
+      description: Project tools and their configuration
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          title:
+            type: string
+          name:
+            type: string
+          enabled:
+            type: boolean
+          position:
+            type: [integer, "null"]
+          url:
+            type: string
+            format: uri
+          app_url:
+            type: string
+            format: uri
+  required:
+    - id
+    - name
+    - status
+    - created_at
+    - updated_at
+
+CreateProject:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of the new project.
+      example: New Project
+    description:
+      type: string
+      description: Optional description of the new project.
+  required:
+    - name
+
+UpdateProject:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of the project.
+      example: Updated Project Name
+    description:
+      type: string
+      description: Optional description of the project.
+      example: "For Client: Xyz Corp Conference"
+    admissions:
+      type: string
+      description: Specifies access policy for the project within the same account.
+      enum:
+        - invite
+        - employee
+        - team
+      example: team
+    schedule_attributes:
+      type: object
+      description: Optional schedule attributes for the project.
+      properties:
+        start_date:
+          type: string
+          format: date
+          description: Project start date (ISO 8601). If provided, end_date is also required.
+          example: "2022-01-01"
+        end_date:
+          type: string
+          format: date
+          description: Project end date (ISO 8601). If provided, start_date is also required.
+          example: "2022-04-01"
+      required:
+        - start_date
+        - end_date
+  required:
+    - name
+
+Bucket:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    type:
+      type: string

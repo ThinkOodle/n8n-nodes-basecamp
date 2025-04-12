@@ -1,0 +1,48 @@
+# Client visibility endpoints
+
+client_visibility:
+  put:
+    tags:
+      - Client Visibility
+    operationId: toggleClientVisibility
+    summary: Toggle client visibility
+    description: |
+      Changes the client visibility for the specified recording in the specified project.
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: recordingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the recording
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/client_visibility.yaml#/ClientVisibility"
+    responses:
+      200:
+        description: The recording with updated visibility settings
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/recordings.yaml#/Recording"
+      400:
+        description: Bad request - invalid parameters
+      401:
+        description: Unauthorized - invalid or expired token
+      403:
+        description: Forbidden - recording doesn't control its client visibility
+      404:
+        description: Not found - recording doesn't exist
+      422:
+        description: Unprocessable entity - validation failed
+      429:
+        description: Too many requests - rate limit exceeded

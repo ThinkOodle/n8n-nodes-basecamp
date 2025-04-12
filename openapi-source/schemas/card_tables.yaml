@@ -1,0 +1,46 @@
+# Card Tables schemas
+CardTable:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+    visible_to_clients:
+      type: boolean
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    title:
+      type: string
+    inherits_status:
+      type: boolean
+    type:
+      type: string
+    url:
+      type: string
+      format: uri
+    app_url:
+      type: string
+      format: uri
+    bookmark_url:
+      type: string
+      format: uri
+    subscription_url:
+      type: string
+      format: uri
+    bucket:
+      $ref: "./projects.yaml#/Bucket"
+    creator:
+      $ref: "./people.yaml#/Person"
+    subscribers:
+      type: array
+      items:
+        $ref: "./people.yaml#/Person"
+    lists:
+      type: array
+      items:
+        $ref: "./card_table_columns.yaml#/CardTableColumn"

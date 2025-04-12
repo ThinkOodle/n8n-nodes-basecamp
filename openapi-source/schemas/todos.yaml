@@ -1,0 +1,219 @@
+# To-dos schemas
+Todo:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: Unique identifier for the todo.
+    status:
+      type: string
+      enum: [active, archived, trashed]
+      description: Status of the todo.
+    visible_to_clients:
+      type: boolean
+      description: Whether the todo is visible to clients.
+    created_at:
+      type: string
+      format: date-time
+      description: When the todo was created.
+    updated_at:
+      type: string
+      format: date-time
+      description: When the todo was last updated.
+    title:
+      type: string
+      description: Title of the todo.
+    inherits_status:
+      type: boolean
+      description: Whether the todo inherits status from its parent.
+    type:
+      type: string
+      description: Type identifier of the resource.
+      enum: [Todo]
+    url:
+      type: string
+      format: uri
+      description: URL to access the todo via the API.
+    app_url:
+      type: string
+      format: uri
+      description: URL to access the todo in the Basecamp web app.
+    bookmark_url:
+      type: string
+      format: uri
+      description: URL to bookmark the todo.
+    subscription_url:
+      type: string
+      format: uri
+      description: URL to access the todo subscription.
+    comments_count:
+      type: integer
+      description: Number of comments on the todo.
+    comments_url:
+      type: string
+      format: uri
+      description: URL to access the todo comments.
+    position:
+      type: integer
+      description: Position of the todo relative to other todos in the list.
+    parent:
+      type: object
+      description: Parent todolist information.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+          enum: [Todolist]
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+    bucket:
+      type: object
+      description: Project information.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    description:
+      type: string
+      description: Description of the todo. May contain HTML.
+    completed:
+      type: boolean
+      description: Whether the todo is completed.
+    completion:
+      type: object
+      description: Information about the completion status.
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          description: When the todo was completed.
+        creator:
+          $ref: "./people.yaml#/Person"
+    content:
+      type: string
+      description: The content/title of the todo.
+    starts_on:
+      type: [string, "null"]
+      format: date
+      description: The date when the todo starts.
+    due_on:
+      type: [string, "null"]
+      format: date
+      description: The due date for the todo.
+    assignees:
+      type: array
+      description: People assigned to this todo.
+      items:
+        $ref: "./people.yaml#/Person"
+    completion_subscribers:
+      type: array
+      description: People subscribed to be notified when this todo is completed.
+      items:
+        $ref: "./people.yaml#/Person"
+    completion_url:
+      type: string
+      format: uri
+      description: URL to complete or uncomplete the todo.
+  required:
+    - id
+    - content
+    - status
+    - type
+
+CreateTodo:
+  type: object
+  properties:
+    content:
+      type: string
+      description: The content/title of the todo.
+      example: "Program it"
+    description:
+      type: string
+      description: Optional description of the todo. May contain HTML.
+      example: "<div><em>Try that new language!</em></div>"
+    assignee_ids:
+      type: array
+      description: IDs of people to assign to this todo.
+      items:
+        type: integer
+    completion_subscriber_ids:
+      type: array
+      description: IDs of people to notify when this todo is completed.
+      items:
+        type: integer
+    notify:
+      type: boolean
+      description: Whether to notify assignees about being assigned.
+      default: false
+    due_on:
+      type: string
+      format: date
+      description: The due date for the todo.
+      example: "2016-05-01"
+    starts_on:
+      type: string
+      format: date
+      description: The date when the todo starts.
+  required:
+    - content
+
+UpdateTodo:
+  type: object
+  properties:
+    content:
+      type: string
+      description: The content/title of the todo.
+      example: "Only changing content! Passing the rest to preserve them."
+    description:
+      type: string
+      description: Description of the todo. May contain HTML.
+      example: "<div><em>Try that new language!</em></div>"
+    assignee_ids:
+      type: array
+      description: IDs of people to assign to this todo.
+      items:
+        type: integer
+    completion_subscriber_ids:
+      type: array
+      description: IDs of people to notify when this todo is completed.
+      items:
+        type: integer
+    notify:
+      type: boolean
+      description: Whether to notify assignees about being assigned.
+      default: false
+    due_on:
+      type: string
+      format: date
+      description: The due date for the todo.
+      example: "2016-05-01"
+    starts_on:
+      type: string
+      format: date
+      description: The date when the todo starts.
+  required:
+    - content
+
+TodoPosition:
+  type: object
+  properties:
+    position:
+      type: integer
+      description: The new position for the todo (1-based).
+      minimum: 1
+      example: 3
+  required:
+    - position

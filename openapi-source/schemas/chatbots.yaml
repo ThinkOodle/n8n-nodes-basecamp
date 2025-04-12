@@ -1,0 +1,76 @@
+# Chatbot schemas
+
+Chatbot:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: The unique identifier for the chatbot
+    created_at:
+      type: string
+      format: date-time
+      description: When the chatbot was created
+    updated_at:
+      type: string
+      format: date-time
+      description: When the chatbot was last updated
+    service_name:
+      type: string
+      description: The name of the chatbot service used for invocation
+    command_url:
+      type: [string, "null"]
+      format: uri
+      description: The HTTPS URL that Basecamp should call when the bot is addressed
+    url:
+      type: string
+      format: uri
+      description: The API URL for the chatbot
+    app_url:
+      type: string
+      format: uri
+      description: The web URL for the chatbot in Basecamp
+    lines_url:
+      type: string
+      format: uri
+      description: The URL to post messages as the chatbot
+
+CreateChatbot:
+  type: object
+  required:
+    - service_name
+  properties:
+    service_name:
+      type: string
+      description: |
+        The name of the chatbot service, which will be used to invoke queries and commands. 
+        No spaces, emoji or non-word characters are allowed.
+    command_url:
+      type: string
+      format: uri
+      description: The HTTPS URL that Basecamp should call when the bot is addressed
+
+UpdateChatbot:
+  type: object
+  required:
+    - service_name
+  properties:
+    service_name:
+      type: string
+      description: |
+        The name of the chatbot service, which will be used to invoke queries and commands. 
+        No spaces, emoji or non-word characters are allowed.
+    command_url:
+      type: string
+      format: uri
+      description: The HTTPS URL that Basecamp should call when the bot is addressed
+
+CreateChatbotLine:
+  type: object
+  required:
+    - content
+  properties:
+    content:
+      type: string
+      description: |
+        The body for the Campfire line. HTML formatting is supported including additional tags 
+        for chatbot lines: table, tr, td, th, thead, tbody, details, and summary.

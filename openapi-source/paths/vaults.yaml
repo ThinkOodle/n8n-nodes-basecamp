@@ -1,0 +1,154 @@
+# Vaults paths
+vaults:
+  get:
+    tags:
+      - Vaults
+    summary: Get vaults
+    description: Returns a list of vaults in the specified vault (folder)
+    operationId: getVaults
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: vaultId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the parent vault
+    responses:
+      '200':
+        description: List of vaults
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/vaults.yaml#/Vault"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified parent vault does not exist
+  post:
+    tags:
+      - Vaults
+    summary: Create a vault
+    description: Creates a new vault in the specified parent vault
+    operationId: createVault
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: vaultId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the parent vault
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/vaults.yaml#/CreateVault"
+    responses:
+      '201':
+        description: The created vault
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/vaults.yaml#/Vault"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create vaults
+      '404':
+        description: Not Found - Specified parent vault does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+              
+vault:
+  get:
+    tags:
+      - Vaults
+    summary: Get a vault
+    description: Returns details for a specific vault
+    operationId: getVault
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: vaultId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the vault
+    responses:
+      '200':
+        description: Vault details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/vaults.yaml#/Vault"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this vault
+      '404':
+        description: Not Found - Specified vault does not exist
+  put:
+    tags:
+      - Vaults
+    summary: Update a vault
+    description: Updates a specific vault
+    operationId: updateVault
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: vaultId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the vault
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/vaults.yaml#/UpdateVault"
+    responses:
+      '200':
+        description: The updated vault
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/vaults.yaml#/Vault"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this vault
+      '404':
+        description: Not Found - Specified vault does not exist
+      '422':
+        description: Unprocessable entity (validation failed)

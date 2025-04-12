@@ -1,0 +1,139 @@
+# Projects paths
+projects:
+  get:
+    summary: Get projects
+    operationId: getProjects
+    description: Returns a list of active projects visible to the current user
+    tags:
+      - Projects
+    parameters:
+      - name: status
+        in: query
+        description: Filter by project status
+        required: false
+        schema:
+          type: string
+          enum: [active, archived, trashed]
+    responses:
+      '200':
+        description: List of projects
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/projects.yaml#/Project"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+  post:
+    summary: Create a project
+    operationId: createProject
+    description: Creates a new project
+    tags:
+      - Projects
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/projects.yaml#/CreateProject"
+    responses:
+      '201':
+        description: The created project
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/projects.yaml#/Project"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create projects
+      '422':
+        description: Unprocessable entity (validation failed)
+
+project:
+  get:
+    summary: Get a project
+    operationId: getProject
+    description: Returns details for a specific project
+    tags:
+      - Projects
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Project details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/projects.yaml#/Project"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this project
+      '404':
+        description: Not Found - Specified project does not exist
+  put:
+    summary: Update a project
+    operationId: updateProject
+    description: Updates a specific project
+    tags:
+      - Projects
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/projects.yaml#/UpdateProject"
+    responses:
+      '200':
+        description: The updated project
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/projects.yaml#/Project"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this project
+      '404':
+        description: Not Found - Specified project does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+  delete:
+    summary: Trash a project
+    operationId: trashProject
+    description: Marks a project as trashed
+    tags:
+      - Projects
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: Project successfully trashed
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to trash this project
+      '404':
+        description: Not Found - Specified project does not exist

@@ -1,0 +1,101 @@
+# Comments schemas
+Comment:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: Unique identifier for the comment.
+    status:
+      type: string
+      enum: [active, archived, trashed]
+      description: Status of the comment.
+    visible_to_clients:
+      type: boolean
+      description: Whether the comment is visible to clients.
+    created_at:
+      type: string
+      format: date-time
+      description: When the comment was created.
+    updated_at:
+      type: string
+      format: date-time
+      description: When the comment was last updated.
+    title:
+      type: string
+      description: Title of the comment.
+    inherits_status:
+      type: boolean
+      description: Whether the comment inherits status from its parent.
+    type:
+      type: string
+      description: Type identifier of the resource.
+      enum: [Comment]
+    url:
+      type: string
+      format: uri
+      description: URL to access the comment via the API.
+    app_url:
+      type: string
+      format: uri
+      description: URL to access the comment in the Basecamp web app.
+    bookmark_url:
+      type: string
+      format: uri
+      description: URL to bookmark the comment.
+    parent:
+      type: object
+      description: Parent recording information.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+    bucket:
+      type: object
+      description: Project information.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    content:
+      type: string
+      description: The content of the comment. May contain HTML.
+  required:
+    - id
+    - content
+    - status
+    - type
+
+CreateComment:
+  type: object
+  properties:
+    content:
+      type: string
+      description: The content of the comment. May contain HTML.
+      example: "<div><em>Wow!</em> That is cool.</div>"
+  required:
+    - content
+
+UpdateComment:
+  type: object
+  properties:
+    content:
+      type: string
+      description: The content of the comment. May contain HTML.
+      example: "<div><em>No way!</em> That isn't cool at all.</div>"
+  required:
+    - content

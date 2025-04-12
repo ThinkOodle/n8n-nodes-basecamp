@@ -1,0 +1,44 @@
+# Attachments paths
+attachments:
+  post:
+    tags:
+      - Attachments
+    summary: Create an attachment
+    description: >
+      Uploads a file and returns an attachable_sgid that can be used in other
+      endpoints
+    operationId: createAttachment
+    parameters:
+      - name: name
+        in: query
+        required: true
+        description: Name of the file being uploaded
+        schema:
+          type: string
+    requestBody:
+      required: true
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary
+            description: Raw binary data of the file
+    responses:
+      "201":
+        description: Attachment created successfully
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/attachments.yaml#/AttachmentResponse"
+      "400":
+        description: Bad Request - Invalid input
+      "401":
+        description: Unauthorized - Authentication is required
+      "403":
+        description: Forbidden - Not permitted to upload attachments
+      "413":
+        description: Payload Too Large - File exceeds maximum size
+      "415":
+        description: Unsupported Media Type - File type not supported
+      "422":
+        description: Unprocessable entity (validation failed)

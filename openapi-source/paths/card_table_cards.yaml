@@ -1,0 +1,212 @@
+# Card Table Cards paths
+card_table_cards:
+  get:
+    tags:
+      - Card Tables
+    summary: Get cards in a column
+    description: Returns a paginated list of cards in a specific column
+    operationId: getCardsInColumn
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: columnId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the column
+    responses:
+      "200":
+        description: List of cards in the column
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/card_table_cards.yaml#/Card"
+      "401":
+        description: Unauthorized - Authentication is required
+      "403":
+        description: Forbidden - Not permitted to access this card
+      "404":
+        description: Not Found - Specified card does not exist
+  post:
+    tags:
+      - Card Tables
+    summary: Create a card
+    description: Creates a new card in a specific column
+    operationId: createCard
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: columnId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the column
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - title
+            properties:
+              title:
+                type: string
+              content:
+                type: string
+              due_on:
+                type: string
+                format: date
+              notify:
+                type: boolean
+                default: false
+    responses:
+      "201":
+        description: Card created successfully
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/card_table_cards.yaml#/Card"
+      "401":
+        description: Unauthorized - Authentication is required
+      "403":
+        description: Forbidden - Not permitted to access this card
+      "404":
+        description: Not Found - Specified card does not exist
+
+card_table_card:
+  get:
+    tags:
+      - Card Tables
+    summary: Get a card
+    description: Returns details of a specific card
+    operationId: getCard
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the card
+    responses:
+      "200":
+        description: Card details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/card_table_cards.yaml#/Card"
+      "401":
+        description: Unauthorized - Authentication is required
+      "403":
+        description: Forbidden - Not permitted to access this card
+      "404":
+        description: Not Found - Specified card does not exist
+  put:
+    tags:
+      - Card Tables
+    summary: Update a card
+    description: Updates a specific card
+    operationId: updateCard
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the card
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              content:
+                type: string
+              due_on:
+                type: string
+                format: date
+              assignee_ids:
+                type: array
+                items:
+                  type: integer
+    responses:
+      "200":
+        description: Card updated successfully
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/card_table_cards.yaml#/Card"
+      "401":
+        description: Unauthorized - Authentication is required
+      "403":
+        description: Forbidden - Not permitted to access this card
+      "404":
+        description: Not Found - Specified card does not exist
+
+card_table_card_moves:
+  post:
+    tags:
+      - Card Tables
+    summary: Move a card
+    description: Moves a card to a different column
+    operationId: moveCard
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the card
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - column_id
+            properties:
+              column_id:
+                type: integer
+    responses:
+      "204":
+        description: Card moved successfully
+      "401":
+        description: Unauthorized - Authentication is required
+      "403":
+        description: Forbidden - Not permitted to access this card
+      "404":
+        description: Not Found - Specified card does not exist

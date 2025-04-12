@@ -1,17 +1,17 @@
 {
-	"node": "n8n-nodes-base.httpbin",
+	"node": "n8n-nodes-base.basecamp4",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": ["Development", "Developer Tools"],
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "http://httpbin.org/#/Auth/get_bearer"
+				"url": "https://github.com/basecamp/api/blob/master/sections/authentication.md"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "http://httpbin.org/"
+				"url": "https://github.com/basecamp/bc3-api"
 			}
 		]
 	}

@@ -1,0 +1,154 @@
+# Uploads paths
+uploads:
+  get:
+    tags:
+      - Uploads
+    summary: Get uploads
+    description: Returns a list of uploads in the specified vault
+    operationId: getUploads
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: vaultId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the vault
+    responses:
+      '200':
+        description: List of uploads
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/uploads.yaml#/Upload"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified vault does not exist
+  post:
+    tags:
+      - Uploads
+    summary: Create an upload
+    description: Creates a new upload in the specified vault
+    operationId: createUpload
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: vaultId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the vault
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/uploads.yaml#/CreateUpload"
+    responses:
+      '201':
+        description: The created upload
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/uploads.yaml#/Upload"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create uploads
+      '404':
+        description: Not Found - Specified vault does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+              
+upload:
+  get:
+    tags:
+      - Uploads
+    summary: Get an upload
+    description: Returns details for a specific upload
+    operationId: getUpload
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: uploadId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the upload
+    responses:
+      '200':
+        description: Upload details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/uploads.yaml#/Upload"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this upload
+      '404':
+        description: Not Found - Specified upload does not exist
+  put:
+    tags:
+      - Uploads
+    summary: Update an upload
+    description: Updates a specific upload
+    operationId: updateUpload
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: uploadId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the upload
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/uploads.yaml#/UpdateUpload"
+    responses:
+      '200':
+        description: The updated upload
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/uploads.yaml#/Upload"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this upload
+      '404':
+        description: Not Found - Specified upload does not exist
+      '422':
+        description: Unprocessable entity (validation failed)

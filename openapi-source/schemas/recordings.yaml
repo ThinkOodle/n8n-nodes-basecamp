@@ -1,0 +1,59 @@
+# Recordings schemas
+
+Recording:
+  type: object
+  description: A generic recording object that represents various Basecamp data structures
+  properties:
+    id:
+      type: integer
+      description: The unique identifier for the recording
+    status:
+      type: string
+      enum: [active, archived, trashed]
+      description: The status of the recording
+    created_at:
+      type: string
+      format: date-time
+      description: When the recording was created
+    updated_at:
+      type: string
+      format: date-time
+      description: When the recording was last updated
+    title:
+      type: string
+      description: The title of the recording
+    type:
+      type: string
+      description: The type of the recording
+      example: Todo, Comment, Document
+    url:
+      type: string
+      format: uri
+      description: The API URL for the recording
+    app_url:
+      type: string
+      format: uri
+      description: The web URL for the recording in Basecamp
+    bookmark_url:
+      type: string
+      format: uri
+      description: The URL to bookmark the recording
+    subscription_url:
+      type: string
+      format: uri
+      description: The URL to subscribe to the recording
+    bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier for the bucket (project)
+        name:
+          type: string
+          description: The name of the bucket (project)
+        type:
+          type: string
+          description: The type of the bucket
+          example: Project
+    # Properties specific to different recording types would appear here
+    # Different recording types will have different additional properties

@@ -1,0 +1,150 @@
+# People paths
+people:
+  get:
+    tags:
+      - People
+    summary: Get people
+    description: Returns a list of all people visible to the current user
+    operationId: getPeople
+    responses:
+      '200':
+        description: List of people
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/people.yaml#/Person"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this resource
+
+person:
+  get:
+    tags:
+      - People
+    summary: Get a person
+    description: Returns the profile information for a specific person
+    operationId: getPerson
+    parameters:
+      - name: personId
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Person profile
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/people.yaml#/Person"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this resource
+      '404':
+        description: Not Found - Specified person does not exist
+              
+my_profile:
+  get:
+    tags:
+      - People
+    summary: Get my profile
+    description: Returns the profile of the current user
+    operationId: getMyProfile
+    responses:
+      '200':
+        description: Current user's profile
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/people.yaml#/Person"
+      '401':
+        description: Unauthorized - Authentication is required
+              
+project_people:
+  get:
+    tags:
+      - People
+    summary: Get people on a project
+    description: Returns a list of people with access to a specific project
+    operationId: getProjectPeople
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: List of people on the project
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/people.yaml#/Person"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this project
+      '404':
+        description: Not Found - Specified project does not exist
+                
+project_users:
+  put:
+    tags:
+      - People
+    summary: Manage people on a project
+    description: Grant and revoke people's access to a project
+    operationId: manageProjectUsers
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/people.yaml#/PeopleAccessUpdate"
+    responses:
+      '200':
+        description: Result of access changes
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/people.yaml#/PeopleAccessResponse"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to manage this project
+      '404':
+        description: Not Found - Specified project does not exist
+
+company_people:
+  get:
+    tags:
+      - People
+    summary: Get people in my company/firm
+    description: Returns a list of people in the current user's company/firm
+    operationId: getCompanyPeople
+    responses:
+      '200':
+        description: List of people in the company/firm
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/people.yaml#/Person"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access company resources

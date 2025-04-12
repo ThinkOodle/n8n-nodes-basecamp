@@ -1,0 +1,57 @@
+# Inboxes schemas
+Inbox:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+      enum: [active, archived, trashed]
+    visible_to_clients:
+      type: boolean
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    title:
+      type: string
+    inherits_status:
+      type: boolean
+    type:
+      type: string
+      enum: [Inbox]
+    url:
+      type: string
+      format: uri
+    app_url:
+      type: string
+      format: uri
+    bookmark_url:
+      type: string
+      format: uri
+    position:
+      type: integer
+    bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    forwards_count:
+      type: integer
+    forwards_url:
+      type: string
+      format: uri
+  required:
+    - id
+    - title
+    - status
+    - type

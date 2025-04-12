@@ -1,0 +1,121 @@
+# People schemas
+Person:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: Unique identifier for the person
+    attachable_sgid:
+      type: string
+      description: A secure global ID for the person
+    name:
+      type: string
+      description: Name of the person
+    email_address:
+      type: string
+      description: Email address of the person
+    personable_type:
+      type: string
+      description: Type of the person (e.g., User, Client)
+    title:
+      type: string
+      description: Job title of the person
+    bio:
+      type: string
+      description: Short biography of the person
+    location:
+      type: string
+      description: Location of the person
+    created_at:
+      type: string
+      description: Timestamp of when the person was created
+      format: date-time
+    updated_at:
+      type: string
+      description: Timestamp of when the person was last updated
+      format: date-time
+    admin:
+      type: boolean
+      description: Indicates if the person is an admin
+    owner:
+      type: boolean
+      description: Indicates if the person is the owner
+    client:
+      type: boolean
+      description: Indicates if the person is a client
+    employee:
+      type: boolean
+      description: Indicates if the person is an employee
+    time_zone:
+      type: string
+      description: Person's time zone
+    avatar_url:
+      type: string
+      description: URL to the person's avatar image
+    company:
+      $ref: "#/Company"
+    can_manage_projects:
+      type: boolean
+      description: Indicates if the person can manage projects
+    can_manage_people:
+      type: boolean
+      description: Indicates if the person can manage people
+
+Company:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: Unique identifier for the company
+    name:
+      type: string
+      description: Name of the company
+
+PeopleAccessUpdate:
+  type: object
+  properties:
+    grant:
+      type: array
+      description: Array of people IDs to be granted access
+      items:
+        type: integer
+    revoke:
+      type: array
+      description: Array of people IDs to be revoked access
+      items:
+        type: integer
+    create:
+      type: array
+      description: Array of new people to be created
+      items:
+        $ref: "#/NewPerson"
+
+NewPerson:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name of the new person
+    email_address:
+      type: string
+      description: Email address of the new person
+    title:
+      type: string
+      description: Job title of the new person (optional)
+    company_name:
+      type: string
+      description: Company name of the new person (optional)
+
+PeopleAccessResponse:
+  type: object
+  properties:
+    granted:
+      type: array
+      description: Array of people who were granted access
+      items:
+        $ref: "#/Person"
+    revoked:
+      type: array
+      description: Array of people who were revoked access
+      items:
+        $ref: "#/Person"

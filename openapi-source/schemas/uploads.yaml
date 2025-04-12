@@ -1,0 +1,130 @@
+# Uploads schemas
+Upload:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+      enum: [active, archived, trashed]
+    visible_to_clients:
+      type: boolean
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    title:
+      type: string
+    inherits_status:
+      type: boolean
+    type:
+      type: string
+      enum: [Upload]
+    url:
+      type: string
+      format: uri
+    app_url:
+      type: string
+      format: uri
+    bookmark_url:
+      type: string
+      format: uri
+    subscription_url:
+      type: string
+      format: uri
+    comments_count:
+      type: integer
+    comments_url:
+      type: string
+      format: uri
+    position:
+      type: integer
+    parent:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+          enum: [Vault]
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+    bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    description:
+      type: string
+      description: HTML description of the upload
+    content_type:
+      type: string
+      description: MIME type of the file
+    byte_size:
+      type: integer
+      description: Size of the file in bytes
+    filename:
+      type: string
+    download_url:
+      type: string
+      format: uri
+    app_download_url:
+      type: string
+      format: uri
+    width:
+      type: integer
+      description: Width of the image if applicable
+    height:
+      type: integer
+      description: Height of the image if applicable
+  required:
+    - id
+    - title
+    - status
+    - type
+    - filename
+
+CreateUpload:
+  type: object
+  properties:
+    attachable_sgid:
+      type: string
+      description: The SGID for the attachment to upload. Obtained from the Create an attachment endpoint.
+      example: "BAh2CEkiCGdpZAY6BkVUSSIsZ2lkOi7vYmMzL0F0dGFjaG1lbnQvNzM4NDcyNj9leHBpcmVzX2luBjsAVEkiDHB1cnBvc2UGOwBUSSIPYXR0YWNoYWJsZQY7AFRJIg9leHBpcmVzX2F0BjsAVDA=--13982201abe18044c897e32979c7dccfe8add9c1"
+    description:
+      type: string
+      description: Optional description of the upload. May contain HTML.
+      example: "<div><strong>Yum</strong></div>"
+    base_name:
+      type: string
+      description: Optional new base filename for the upload (without extension).
+      example: "yummy_pizza"
+  required:
+    - attachable_sgid
+
+UpdateUpload:
+  type: object
+  properties:
+    description:
+      type: string
+      description: The description of the upload. May contain HTML.
+      example: "<div>Meh</div>"
+    base_name:
+      type: string
+      description: New base filename for the upload (without extension).
+      example: "old_pizza"

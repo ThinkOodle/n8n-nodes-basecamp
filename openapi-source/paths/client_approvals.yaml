@@ -1,0 +1,64 @@
+# Client Approvals paths
+client_approvals:
+  get:
+    tags:
+      - Client Approvals
+    summary: Get client approvals
+    description: Returns a paginated list of client approvals in the project
+    operationId: getClientApprovals
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+    responses:
+      '200':
+        description: List of client approvals
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/client_approvals.yaml#/ClientApproval"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified project does not exist
+                
+client_approval:
+  get:
+    tags:
+      - Client Approvals
+    summary: Get a client approval
+    description: Returns a specific client approval
+    operationId: getClientApproval
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: approvalId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the client approval
+    responses:
+      '200':
+        description: The client approval
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/client_approvals.yaml#/ClientApproval"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this client approval
+      '404':
+        description: Not Found - Specified client approval does not exist

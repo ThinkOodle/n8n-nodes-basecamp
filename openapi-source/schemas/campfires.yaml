@@ -1,0 +1,137 @@
+# Campfires schemas
+Campfire:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+      enum: [active, archived, trashed]
+    visible_to_clients:
+      type: boolean
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    title:
+      type: string
+    inherits_status:
+      type: boolean
+    type:
+      type: string
+      enum: [Chat::Transcript]
+    url:
+      type: string
+      format: uri
+    app_url:
+      type: string
+      format: uri
+    bookmark_url:
+      type: string
+      format: uri
+    subscription_url:
+      type: string
+      format: uri
+    position:
+      type: integer
+    bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    topic:
+      type: string
+    lines_url:
+      type: string
+      format: uri
+  required:
+    - id
+    - status
+    - title
+    - type
+
+CampfireLine:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+      enum: [active, archived, trashed]
+    visible_to_clients:
+      type: boolean
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    title:
+      type: string
+    inherits_status:
+      type: boolean
+    type:
+      type: string
+      enum: [Chat::Lines::Text]
+    url:
+      type: string
+      format: uri
+    app_url:
+      type: string
+      format: uri
+    bookmark_url:
+      type: string
+      format: uri
+    parent:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+          enum: [Chat::Transcript]
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+    bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    content:
+      type: string
+  required:
+    - id
+    - status
+    - content
+    - type
+
+CreateCampfireLine:
+  type: object
+  properties:
+    content:
+      type: string
+      description: The text content of the campfire line
+  required:
+    - content

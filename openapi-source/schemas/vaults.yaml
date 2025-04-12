@@ -1,0 +1,103 @@
+# Vaults schemas
+Vault:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+      enum: [active, archived, trashed]
+    visible_to_clients:
+      type: boolean
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    title:
+      type: string
+    inherits_status:
+      type: boolean
+    type:
+      type: string
+      enum: [Vault]
+    url:
+      type: string
+      format: uri
+    app_url:
+      type: string
+      format: uri
+    bookmark_url:
+      type: string
+      format: uri
+    position:
+      type: integer
+    parent:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+          enum: [Vault]
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+    bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    documents_count:
+      type: integer
+    documents_url:
+      type: string
+      format: uri
+    uploads_count:
+      type: integer
+    uploads_url:
+      type: string
+      format: uri
+    vaults_count:
+      type: integer
+    vaults_url:
+      type: string
+      format: uri
+  required:
+    - id
+    - title
+    - status
+    - type
+
+CreateVault:
+  type: object
+  properties:
+    title:
+      type: string
+      description: The name of the vault.
+      example: "Materials"
+  required:
+    - title
+
+UpdateVault:
+  type: object
+  properties:
+    title:
+      type: string
+      description: The name of the vault.
+      example: "Important Materials"
+  required:
+    - title

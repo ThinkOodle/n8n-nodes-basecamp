@@ -1,0 +1,203 @@
+# Schedule Entries schemas
+ScheduleEntry:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+      enum: [active, archived, trashed]
+    visible_to_clients:
+      type: boolean
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    title:
+      type: string
+    inherits_status:
+      type: boolean
+    type:
+      type: string
+      enum: [Schedule::Entry]
+    url:
+      type: string
+      format: uri
+    app_url:
+      type: string
+      format: uri
+    bookmark_url:
+      type: string
+      format: uri
+    subscription_url:
+      type: string
+      format: uri
+    comments_count:
+      type: integer
+    comments_url:
+      type: string
+      format: uri
+    parent:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+          enum: [Schedule]
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+    bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    description:
+      type: string
+    summary:
+      type: string
+    all_day:
+      type: boolean
+    starts_at:
+      type: string
+      format: date-time
+    ends_at:
+      type: string
+      format: date-time
+    participants:
+      type: array
+      items:
+        $ref: "./people.yaml#/Person"
+    recurrence_schedule:
+      $ref: "#/RecurrenceSchedule"
+  required:
+    - id
+    - summary
+    - starts_at
+    - ends_at
+    - status
+    - type
+
+CreateScheduleEntry:
+  type: object
+  properties:
+    summary:
+      type: string
+      description: Brief summary of what the schedule entry is about.
+      example: "Important Meeting"
+    starts_at:
+      type: string
+      format: date-time
+      description: When the schedule entry starts (ISO 8601).
+      example: "2015-06-04T00:00:00Z"
+    ends_at:
+      type: string
+      format: date-time
+      description: When the schedule entry ends (ISO 8601).
+      example: "2015-06-04T02:00:00Z"
+    description:
+      type: string
+      description: More detailed information about the schedule entry. May contain HTML.
+      example: "<div>Quarterly planning meeting</div>"
+    participant_ids:
+      type: array
+      description: IDs of people participating in this schedule entry.
+      items:
+        type: integer
+    all_day:
+      type: boolean
+      description: Whether the schedule entry should be an all-day event.
+      example: false
+    notify:
+      type: boolean
+      description: Whether to notify participants about the entry.
+      example: false
+  required:
+    - summary
+    - starts_at
+    - ends_at
+
+UpdateScheduleEntry:
+  type: object
+  properties:
+    summary:
+      type: string
+      description: Brief summary of what the schedule entry is about.
+      example: "All Day Meeting"
+    starts_at:
+      type: string
+      format: date
+      description: When the schedule entry starts (date for all-day events).
+      example: "2015-06-04"
+    ends_at:
+      type: string
+      format: date
+      description: When the schedule entry ends (date for all-day events).
+      example: "2015-06-04"
+    description:
+      type: string
+      description: More detailed information about the schedule entry. May contain HTML.
+    participant_ids:
+      type: array
+      description: IDs of people participating in this schedule entry.
+      items:
+        type: integer
+    all_day:
+      type: boolean
+      description: Whether the schedule entry should be an all-day event.
+      example: true
+    notify:
+      type: boolean
+      description: Whether to notify participants about the entry.
+
+RecurrenceSchedule:
+  type: object
+  properties:
+    frequency:
+      type: string
+      enum: [every_day, every_week, every_month, every_year]
+      description: How often the schedule entry recurs.
+      example: "every_month"
+    days:
+      type: array
+      description: The days of the month or week when the entry recurs.
+      items:
+        type: integer
+      example: [1]
+    hour:
+      type: integer
+      description: The hour when the entry starts.
+      example: 10
+    minute:
+      type: integer
+      description: The minute when the entry starts.
+      example: 30
+    week_instance:
+      type: integer
+      description: For monthly recurrences, specifies which week instance of the month.
+      example: 3
+    start_date:
+      type: string
+      format: date
+      description: The date when the recurrence starts.
+      example: "2019-02-18"
+    end_date:
+      type: string
+      format: date
+      description: The date when the recurrence ends.
+      example: "2019-10-25"

@@ -1,0 +1,176 @@
+# Client correspondence schemas
+
+ClientCorrespondence:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: The unique identifier for the client correspondence
+    status:
+      type: string
+      enum: [active, archived, trashed]
+      description: The status of the correspondence
+    visible_to_clients:
+      type: boolean
+      description: Whether the correspondence is visible to clients
+    created_at:
+      type: string
+      format: date-time
+      description: When the correspondence was created
+    updated_at:
+      type: string
+      format: date-time
+      description: When the correspondence was last updated
+    title:
+      type: string
+      description: The title of the correspondence
+    inherits_status:
+      type: boolean
+      description: Whether the correspondence inherits its status from its parent
+    type:
+      type: string
+      description: The type of the recording
+      example: Client::Correspondence
+    url:
+      type: string
+      format: uri
+      description: The API URL for the correspondence
+    app_url:
+      type: string
+      format: uri
+      description: The web URL for the correspondence in Basecamp
+    bookmark_url:
+      type: string
+      format: uri
+      description: The URL to bookmark the correspondence
+    subscription_url:
+      type: string
+      format: uri
+      description: The URL to subscribe to the correspondence
+    parent:
+      $ref: "#/Parent"
+    bucket:
+      $ref: "#/Bucket"
+    creator:
+      $ref: "#/Creator"
+    content:
+      type: string
+      description: The rich text content of the correspondence in HTML format
+    subject:
+      type: string
+      description: The subject of the correspondence
+    replies_count:
+      type: integer
+      description: The number of replies to the correspondence
+    replies_url:
+      type: string
+      format: uri
+      description: The URL to get replies to the correspondence
+
+Parent:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: The unique identifier for the parent
+    title:
+      type: string
+      description: The title of the parent
+    type:
+      type: string
+      description: The type of the parent
+      example: Client::Board
+    url:
+      type: string
+      format: uri
+      description: The API URL for the parent
+    app_url:
+      type: string
+      format: uri
+      description: The web URL for the parent in Basecamp
+
+Bucket:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: The unique identifier for the bucket (project)
+    name:
+      type: string
+      description: The name of the bucket (project)
+    type:
+      type: string
+      description: The type of the bucket
+      example: Project
+
+Creator:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: The unique identifier for the creator
+    attachable_sgid:
+      type: string
+      description: The globally unique identifier for attaching the creator in rich text
+    name:
+      type: string
+      description: The name of the creator
+    email_address:
+      type: string
+      format: email
+      description: The email address of the creator
+    personable_type:
+      type: string
+      description: The type of person
+      example: User
+    title:
+      type: string
+      description: The job title of the creator
+    bio:
+      type: [string, "null"]
+      description: The biography of the creator
+    location:
+      type: [string, "null"]
+      description: The location of the creator
+    created_at:
+      type: string
+      format: date-time
+      description: When the creator was created
+    updated_at:
+      type: string
+      format: date-time
+      description: When the creator was last updated
+    admin:
+      type: boolean
+      description: Whether the creator is an admin
+    owner:
+      type: boolean
+      description: Whether the creator is an owner
+    client:
+      type: boolean
+      description: Whether the creator is a client
+    employee:
+      type: boolean
+      description: Whether the creator is an employee
+    time_zone:
+      type: string
+      description: The time zone of the creator
+    avatar_url:
+      type: string
+      format: uri
+      description: The URL for the creator's avatar
+    company:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier for the company
+        name:
+          type: string
+          description: The name of the company
+    can_manage_projects:
+      type: boolean
+      description: Whether the creator can manage projects
+    can_manage_people:
+      type: boolean
+      description: Whether the creator can manage peoplenage people

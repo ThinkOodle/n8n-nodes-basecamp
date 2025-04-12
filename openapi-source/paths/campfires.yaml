@@ -1,0 +1,207 @@
+# Campfires paths
+chats:
+  get:
+    tags:
+      - Campfires
+    summary: Get Campfires
+    description: Returns a paginated list of all active Campfires visible to the current user
+    operationId: getCampfires
+    responses:
+      '200':
+        description: List of campfires
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/campfires.yaml#/Campfire"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+
+chat:
+  get:
+    tags:
+      - Campfires
+    summary: Get a Campfire
+    description: Returns the Campfire with the specified ID
+    operationId: getCampfire
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: chatId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the campfire
+    responses:
+      '200':
+        description: The campfire
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/campfires.yaml#/Campfire"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this campfire
+      '404':
+        description: Not Found - Specified campfire does not exist
+
+chat_lines:
+  get:
+    tags:
+      - Campfires
+    summary: Get Campfire lines
+    description: Returns a paginated list of lines in the Campfire
+    operationId: getCampfireLines
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: chatId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the campfire
+    responses:
+      '200':
+        description: List of campfire lines
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/campfires.yaml#/CampfireLine"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this campfire
+      '404':
+        description: Not Found - Specified campfire does not exist
+  post:
+    tags:
+      - Campfires
+    summary: Create a Campfire line
+    description: Creates a new line in the Campfire
+    operationId: createCampfireLine
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: chatId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the campfire
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/campfires.yaml#/CreateCampfireLine"
+    responses:
+      '201':
+        description: The created campfire line
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/campfires.yaml#/CampfireLine"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to post to this campfire
+      '404':
+        description: Not Found - Specified campfire does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+
+chat_line:
+  get:
+    tags:
+      - Campfires
+    summary: Get a Campfire line
+    description: Returns a specific line in the Campfire
+    operationId: getCampfireLine
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: chatId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the campfire
+      - name: lineId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the campfire line
+    responses:
+      '200':
+        description: The campfire line
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/campfires.yaml#/CampfireLine"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this campfire line
+      '404':
+        description: Not Found - Specified campfire line does not exist
+  delete:
+    tags:
+      - Campfires
+    summary: Delete a Campfire line
+    description: Deletes a specific line from the Campfire
+    operationId: deleteCampfireLine
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: chatId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the campfire
+      - name: lineId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the campfire line
+    responses:
+      '204':
+        description: The campfire line was successfully deleted
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to delete this campfire line
+      '404':
+        description: Not Found - Specified campfire line does not exist

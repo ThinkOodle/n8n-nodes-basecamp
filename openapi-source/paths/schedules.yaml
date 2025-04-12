@@ -1,0 +1,84 @@
+# Schedules paths
+schedule:
+  get:
+    tags:
+      - Schedules
+    summary: Get schedule
+    description: Returns the schedule for a project
+    operationId: getSchedule
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: scheduleId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the schedule
+    responses:
+      '200':
+        description: Schedule information
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/schedules.yaml#/Schedule"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this schedule
+      '404':
+        description: Not Found - Specified schedule does not exist
+  put:
+    tags:
+      - Schedules
+    summary: Update a schedule
+    description: Updates a project's schedule settings
+    operationId: updateSchedule
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: scheduleId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the schedule
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - include_due_assignments
+            properties:
+              include_due_assignments:
+                type: boolean
+                description: >-
+                  Whether the schedule should include due dates from to-dos,
+                  cards and steps
+    responses:
+      '200':
+        description: Schedule updated successfully
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/schedules.yaml#/Schedule"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this schedule
+      '404':
+        description: Not Found - Specified schedule does not exist
+      '422':
+        description: Unprocessable entity (validation failed)

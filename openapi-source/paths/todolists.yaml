@@ -1,0 +1,189 @@
+# To-do Lists paths
+todolists:
+  get:
+    tags:
+      - Todolists
+    summary: Get to-do lists
+    description: Returns a list of to-do lists in the specified project
+    operationId: getTodolists
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todosetId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do set
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [archived, trashed, active]
+        description: Filter to-do lists by status
+    responses:
+      '200':
+        description: List of to-do lists
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/todolists.yaml#/Todolist"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified to-do set does not exist
+  post:
+    tags:
+      - Todolists
+    summary: Create a to-do list
+    description: Creates a new to-do list in the specified project
+    operationId: createTodolist
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todosetId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do set
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/todolists.yaml#/CreateTodolist"
+    responses:
+      '201':
+        description: The created to-do list
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/todolists.yaml#/Todolist"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create to-do lists
+      '404':
+        description: Not Found - Specified to-do set does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+              
+todolist:
+  get:
+    tags:
+      - Todolists
+    summary: Get a to-do list
+    description: Returns details for a specific to-do list
+    operationId: getTodolist
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todolistId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do list
+    responses:
+      '200':
+        description: To-do list details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/todolists.yaml#/Todolist"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this to-do list
+      '404':
+        description: Not Found - Specified to-do list does not exist
+  put:
+    tags:
+      - Todolists
+    summary: Update a to-do list
+    description: Updates a specific to-do list
+    operationId: updateTodolist
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todolistId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do list
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/todolists.yaml#/UpdateTodolist"
+    responses:
+      '200':
+        description: The updated to-do list
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/todolists.yaml#/Todolist"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this to-do list
+      '404':
+        description: Not Found - Specified to-do list does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+  delete:
+    tags:
+      - Todolists
+    summary: Trash a to-do list
+    description: Marks the to-do list with the given ID as trashed
+    operationId: trashTodolist
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todolistId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do list
+    responses:
+      '204':
+        description: The to-do list was successfully trashed
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to trash this to-do list
+      '404':
+        description: Not Found - Specified to-do list does not exist

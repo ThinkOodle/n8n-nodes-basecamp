@@ -1,0 +1,173 @@
+# Questions schemas
+Question:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+      enum: [active, archived, trashed]
+    visible_to_clients:
+      type: boolean
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    title:
+      type: string
+    inherits_status:
+      type: boolean
+    type:
+      type: string
+      enum: [Question]
+    url:
+      type: string
+      format: uri
+    app_url:
+      type: string
+      format: uri
+    bookmark_url:
+      type: string
+      format: uri
+    parent:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+          enum: [Questionnaire]
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+    bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    content:
+      type: string
+    schedule:
+      type: object
+      properties:
+        frequency:
+          type: string
+          enum: [every_day, every_week, every_month, every_year, one_time]
+        days:
+          type: array
+          items:
+            type: integer
+        hour:
+          type: integer
+        minute:
+          type: integer
+        start_date:
+          type: string
+          format: date
+    presenting_group:
+      type: array
+      items:
+        $ref: "./people.yaml#/Person"
+    presenting_group_json:
+      type: array
+      items:
+        type: integer
+    subscribers:
+      type: array
+      items:
+        $ref: "./people.yaml#/Person"
+    answers_count:
+      type: integer
+    answers_url:
+      type: string
+      format: uri
+  required:
+    - id
+    - status
+    - content
+    - type
+    
+CreateQuestion:
+  type: object
+  properties:
+    content:
+      type: string
+      description: The text of the question
+    schedule:
+      type: object
+      properties:
+        frequency:
+          type: string
+          enum: [every_day, every_week, every_month, every_year, one_time]
+        days:
+          type: array
+          items:
+            type: integer
+          description: Days of week (1-7) or month (1-31) depending on frequency
+        hour:
+          type: integer
+          description: Hour to ask the question (0-23)
+        minute:
+          type: integer
+          description: Minute to ask the question (0-59)
+        start_date:
+          type: string
+          format: date
+          description: Date to start asking the question (ISO 8601)
+    presenting_group_json:
+      type: array
+      items:
+        type: integer
+      description: Array of person IDs who will be asked to answer
+  required:
+    - content
+    - schedule
+    
+UpdateQuestion:
+  type: object
+  properties:
+    content:
+      type: string
+      description: The text of the question
+    schedule:
+      type: object
+      properties:
+        frequency:
+          type: string
+          enum: [every_day, every_week, every_month, every_year, one_time]
+        days:
+          type: array
+          items:
+            type: integer
+          description: Days of week (1-7) or month (1-31) depending on frequency
+        hour:
+          type: integer
+          description: Hour to ask the question (0-23)
+        minute:
+          type: integer
+          description: Minute to ask the question (0-59)
+        start_date:
+          type: string
+          format: date
+          description: Date to start asking the question (ISO 8601)
+    presenting_group_json:
+      type: array
+      items:
+        type: integer
+      description: Array of person IDs who will be asked to answer
+  required:
+    - content

@@ -1,0 +1,48 @@
+# Lineup markers schemas
+
+LineupMarker:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: The unique identifier for the marker
+    name:
+      type: string
+      description: The name of the marker
+    date:
+      type: string
+      format: date
+      description: The date for the marker in ISO8601 format (without time part)
+    created_at:
+      type: string
+      format: date-time
+      description: When the marker was created
+    updated_at:
+      type: string
+      format: date-time
+      description: When the marker was last updated
+
+CreateLineupMarker:
+  type: object
+  required:
+    - name
+    - date
+  properties:
+    name:
+      type: string
+      description: The name of the marker
+    date:
+      type: string
+      format: date
+      description: The date for the marker in ISO8601 format (without time part)
+
+UpdateLineupMarker:
+  type: object
+  properties:
+    name:
+      type: string
+      description: The name of the marker
+    date:
+      type: string
+      format: date
+      description: The date for the marker in ISO8601 format (without time part)

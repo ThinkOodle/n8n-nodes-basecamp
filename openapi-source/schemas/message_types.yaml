@@ -1,0 +1,43 @@
+# Message Types schemas
+MessageType:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    icon:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  required:
+    - id
+    - name
+    - icon
+
+CreateMessageType:
+  type: object
+  properties:
+    name:
+      type: string
+      description: The name of the message type
+    icon:
+      type: string
+      description: The emoji icon to use for the message type
+  required:
+    - name
+    - icon
+
+UpdateMessageType:
+  type: object
+  properties:
+    name:
+      type: string
+      description: The name of the message type
+    icon:
+      type: string
+      description: The emoji icon to use for the message type

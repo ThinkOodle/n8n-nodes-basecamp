@@ -1,0 +1,170 @@
+# Recordings endpoints
+
+recordings:
+  get:
+    tags:
+      - Recordings
+    operationId: getRecordings
+    summary: Get recordings
+    description: |
+      Returns a paginated list of recordings for the given type.
+    parameters:
+      - name: type
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [Comment, Document, Message, Question::Answer, Schedule::Entry, Todo, Todolist, Upload, Vault]
+        description: The type of recording to retrieve
+      - name: bucket
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Single or comma separated list of project IDs. Default is all active projects visible to the current user.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [active, archived, trashed]
+          default: active
+        description: The status of recordings to retrieve
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [created_at, updated_at]
+          default: created_at
+        description: The field to sort by
+      - name: direction
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [desc, asc]
+          default: desc
+        description: The sort direction
+    responses:
+      200:
+        description: List of recordings
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/recordings.yaml#/Recording"
+      400:
+        description: Bad request - invalid parameters
+      401:
+        description: Unauthorized - invalid or expired token
+      403:
+        description: Forbidden - insufficient permissions
+      429:
+        description: Too many requests - rate limit exceeded
+
+trash_recording:
+  put:
+    tags:
+      - Recordings
+    operationId: trashRecording
+    summary: Trash a recording
+    description: |
+      Marks the specified recording as trashed in the specified project.
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: recordingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the recording
+    responses:
+      204:
+        description: No content - successful trash operation
+      400:
+        description: Bad request - invalid parameters
+      401:
+        description: Unauthorized - invalid or expired token
+      403:
+        description: Forbidden - insufficient permissions
+      404:
+        description: Not found - recording doesn't exist
+      429:
+        description: Too many requests - rate limit exceeded
+
+archive_recording:
+  put:
+    tags:
+      - Recordings
+    operationId: archiveRecording
+    summary: Archive a recording
+    description: |
+      Marks the specified recording as archived in the specified project.
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: recordingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the recording
+    responses:
+      204:
+        description: No content - successful archive operation
+      400:
+        description: Bad request - invalid parameters
+      401:
+        description: Unauthorized - invalid or expired token
+      403:
+        description: Forbidden - insufficient permissions
+      404:
+        description: Not found - recording doesn't exist
+      429:
+        description: Too many requests - rate limit exceeded
+
+unarchive_recording:
+  put:
+    tags:
+      - Recordings
+    operationId: unarchiveRecording
+    summary: Unarchive a recording
+    description: |
+      Marks the specified recording as active in the specified project.
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: recordingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the recording
+    responses:
+      204:
+        description: No content - successful unarchive operation
+      400:
+        description: Bad request - invalid parameters
+      401:
+        description: Unauthorized - invalid or expired token
+      403:
+        description: Forbidden - insufficient permissions
+      404:
+        description: Not found - recording doesn't exist
+      429:
+        description: Too many requests - rate limit exceeded

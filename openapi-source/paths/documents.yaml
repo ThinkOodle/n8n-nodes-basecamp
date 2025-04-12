@@ -1,0 +1,154 @@
+# Documents paths
+documents:
+  get:
+    tags:
+      - Documents
+    summary: Get documents
+    description: Returns a list of documents in the specified vault
+    operationId: getDocuments
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: vaultId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the vault
+    responses:
+      '200':
+        description: List of documents
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/documents.yaml#/Document"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified vault does not exist
+  post:
+    tags:
+      - Documents
+    summary: Create a document
+    description: Creates a new document in the specified vault
+    operationId: createDocument
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: vaultId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the vault
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/documents.yaml#/CreateDocument"
+    responses:
+      '201':
+        description: The created document
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/documents.yaml#/Document"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create documents
+      '404':
+        description: Not Found - Specified vault does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+              
+document:
+  get:
+    tags:
+      - Documents
+    summary: Get a document
+    description: Returns details for a specific document
+    operationId: getDocument
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the document
+    responses:
+      '200':
+        description: Document details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/documents.yaml#/Document"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this document
+      '404':
+        description: Not Found - Specified document does not exist
+  put:
+    tags:
+      - Documents
+    summary: Update a document
+    description: Updates a specific document
+    operationId: updateDocument
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the document
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/documents.yaml#/UpdateDocument"
+    responses:
+      '200':
+        description: The updated document
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/documents.yaml#/Document"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this document
+      '404':
+        description: Not Found - Specified document does not exist
+      '422':
+        description: Unprocessable entity (validation failed)

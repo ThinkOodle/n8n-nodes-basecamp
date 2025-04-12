@@ -1,0 +1,183 @@
+# Card Table Columns paths
+card_table_column:
+  get:
+    tags:
+      - Card Tables
+    summary: Get a column
+    description: Returns a specific column in a card table
+    operationId: getColumn
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: columnId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the column
+    responses:
+      '200':
+        description: The column details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/card_table_columns.yaml#/Column"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this column
+      '404':
+        description: Not Found - Specified column does not exist
+  put:
+    tags:
+      - Card Tables
+    summary: Update a column
+    description: Updates a specific column in a card table
+    operationId: updateColumn
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: columnId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the column
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+    responses:
+      '200':
+        description: The updated column
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/card_table_columns.yaml#/Column"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this column
+      '404':
+        description: Not Found - Specified column does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+
+card_table_columns:
+  post:
+    tags:
+      - Card Tables
+    summary: Create a column
+    description: Creates a new column in a card table
+    operationId: createColumn
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: cardTableId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the card table
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - title
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+    responses:
+      '201':
+        description: The created column
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/card_table_columns.yaml#/Column"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create columns
+      '404':
+        description: Not Found - Specified card table does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+
+card_table_column_moves:
+  post:
+    tags:
+      - Card Tables
+    summary: Move a column
+    description: Moves a column to a new position in the card table
+    operationId: moveColumn
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: cardTableId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the card table
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - source_id
+              - target_id
+            properties:
+              source_id:
+                type: integer
+              target_id:
+                type: integer
+              position:
+                type: integer
+                default: 1
+    responses:
+      '204':
+        description: Column moved successfully
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to move columns
+      '404':
+        description: Not Found - Specified card table or column does not exist
+      '422':
+        description: Unprocessable entity (validation failed)

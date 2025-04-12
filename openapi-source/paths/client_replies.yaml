@@ -1,0 +1,87 @@
+# Client replies endpoints
+
+client_replies:
+  get:
+    tags:
+      - Client Replies
+    operationId: getClientReplies
+    summary: Get client replies
+    description: |
+      Returns a paginated list of client replies for the specified recording in the specified project.
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: recordingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the recording (client correspondence or client approval)
+    responses:
+      200:
+        description: List of client replies
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/client_replies.yaml#/ClientReply"
+      400:
+        description: Bad request - invalid parameters
+      401:
+        description: Unauthorized - invalid or expired token
+      403:
+        description: Forbidden - insufficient permissions
+      404:
+        description: Not found - resource doesn't exist
+      429:
+        description: Too many requests - rate limit exceeded
+
+client_reply:
+  get:
+    tags:
+      - Client Replies
+    operationId: getClientReply
+    summary: Get a client reply
+    description: |
+      Returns the client reply with the specified ID for the specified recording in the specified project.
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: recordingId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the recording (client correspondence or client approval)
+      - name: replyId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the client reply
+    responses:
+      200:
+        description: The requested client reply
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/client_replies.yaml#/ClientReply"
+      400:
+        description: Bad request - invalid parameters
+      401:
+        description: Unauthorized - invalid or expired token
+      403:
+        description: Forbidden - insufficient permissions
+      404:
+        description: Not found - resource doesn't exist
+      429:
+        description: Too many requests - rate limit exceeded

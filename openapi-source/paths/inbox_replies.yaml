@@ -1,0 +1,76 @@
+# Inbox Replies paths
+inbox_replies:
+  get:
+    tags:
+      - Inbox Replies
+    summary: Get inbox replies
+    description: Returns a paginated list of inbox replies for a forward
+    operationId: getInboxReplies
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: forwardId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the forward
+    responses:
+      '200':
+        description: List of inbox replies
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/inbox_replies.yaml#/InboxReply"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified forward does not exist
+                
+inbox_reply:
+  get:
+    tags:
+      - Inbox Replies
+    summary: Get an inbox reply
+    description: Returns a specific inbox reply
+    operationId: getInboxReply
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: forwardId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the forward
+      - name: replyId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the reply
+    responses:
+      '200':
+        description: The inbox reply
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/inbox_replies.yaml#/InboxReply"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this inbox reply
+      '404':
+        description: Not Found - Specified inbox reply does not exist

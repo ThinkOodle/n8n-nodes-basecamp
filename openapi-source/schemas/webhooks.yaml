@@ -1,0 +1,194 @@
+# Webhooks schemas
+Webhook:
+  type: object
+  properties:
+    id:
+      type: integer
+    active:
+      type: boolean
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    payload_url:
+      type: string
+      format: uri
+    types:
+      type: array
+      items:
+        type: string
+    url:
+      type: string
+      format: uri
+    app_url:
+      type: string
+      format: uri
+  required:
+    - id
+    - active
+    - payload_url
+    - types
+
+WebhookWithDeliveries:
+  allOf:
+    - $ref: "#/Webhook"
+    - type: object
+      properties:
+        recent_deliveries:
+          type: array
+          items:
+            $ref: "#/WebhookDelivery"
+          description: 25 most recent delivery exchanges, sorted with most recent first
+
+WebhookDelivery:
+  type: object
+  properties:
+    id:
+      type: integer
+    created_at:
+      type: string
+      format: date-time
+    request:
+      type: object
+      properties:
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        body:
+          $ref: "#/WebhookEvent"
+    response:
+      type: object
+      properties:
+        code:
+          type: integer
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        message:
+          type: string
+        body:
+          type: string
+  required:
+    - id
+    - created_at
+    - request
+    - response
+
+WebhookEvent:
+  type: object
+  properties:
+    id:
+      type: integer
+    kind:
+      type: string
+      description: Type of event (e.g., message_created, todo_completed)
+    details:
+      type: object
+      additionalProperties: true
+    created_at:
+      type: string
+      format: date-time
+    recording:
+      type: object
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        title:
+          type: string
+        inherits_status:
+          type: boolean
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+        comments_count:
+          type: integer
+        comments_url:
+          type: string
+          format: uri
+        parent:
+          type: object
+          properties:
+            id:
+              type: integer
+            title:
+              type: string
+            type:
+              type: string
+            url:
+              type: string
+              format: uri
+            app_url:
+              type: string
+              format: uri
+        bucket:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            type:
+              type: string
+        creator:
+          $ref: "./people.yaml#/Person"
+        content:
+          type: string
+    creator:
+      $ref: "./people.yaml#/Person"
+
+CreateWebhook:
+  type: object
+  properties:
+    payload_url:
+      type: string
+      format: uri
+      description: The HTTPS URL that Basecamp will call when a matching event occurs.
+      example: "https://example.com/endpoint"
+    types:
+      type: array
+      description: The types of events that will trigger this webhook.
+      items:
+        type: string
+        enum: [all, Comment, Client::Approval::Response, Client::Forward, Client::Reply, CloudFile, Document, GoogleDocument, Inbox::Forward, Message, Question, Question::Answer, Schedule::Entry, Todo, Todolist, Upload, Vault]
+      example: ["Todo", "Todolist"]
+  required:
+    - payload_url
+
+UpdateWebhook:
+  type: object
+  properties:
+    payload_url:
+      type: string
+      format: uri
+      description: The HTTPS URL that Basecamp will call when a matching event occurs.
+      example: "https://example.com/endpoint"
+    types:
+      type: array
+      description: The types of events that will trigger this webhook.
+      items:
+        type: string
+        enum: [all, Comment, Client::Approval::Response, Client::Forward, Client::Reply, CloudFile, Document, GoogleDocument, Inbox::Forward, Message, Question, Question::Answer, Schedule::Entry, Todo, Todolist, Upload, Vault]
+      example: ["Todo", "Todolist"]
+    active:
+      type: boolean
+      description: Whether this webhook should be active.
+      example: true
+  required:
+    - payload_url

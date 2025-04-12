@@ -1,0 +1,115 @@
+# Documents schemas
+Document:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+      enum: [active, archived, trashed]
+    visible_to_clients:
+      type: boolean
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    title:
+      type: string
+    inherits_status:
+      type: boolean
+    type:
+      type: string
+      enum: [Document]
+    url:
+      type: string
+      format: uri
+    app_url:
+      type: string
+      format: uri
+    bookmark_url:
+      type: string
+      format: uri
+    subscription_url:
+      type: string
+      format: uri
+    comments_count:
+      type: integer
+    comments_url:
+      type: string
+      format: uri
+    position:
+      type: integer
+    parent:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+          enum: [Vault]
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+    bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum: [Project]
+    creator:
+      $ref: "./people.yaml#/Person"
+    content:
+      type: string
+      description: HTML content of the document
+  required:
+    - id
+    - title
+    - content
+    - status
+    - type
+
+CreateDocument:
+  type: object
+  properties:
+    title:
+      type: string
+      description: The title of the document.
+      example: "New Hire Info"
+    content:
+      type: string
+      description: The content of the document. May contain HTML.
+      example: "<div><strong>Getting started</strong></div>"
+    status:
+      type: string
+      enum: [active, draft]
+      description: Set to active to publish immediately.
+      example: "active"
+  required:
+    - title
+    - content
+
+UpdateDocument:
+  type: object
+  properties:
+    title:
+      type: string
+      description: The title of the document.
+      example: "New Hire Information"
+    content:
+      type: string
+      description: The content of the document. May contain HTML.
+      example: "<div><strong>Let's get started</strong></div>"
+  required:
+    - title
+    - content

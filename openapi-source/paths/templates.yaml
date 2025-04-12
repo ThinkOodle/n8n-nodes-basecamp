@@ -1,0 +1,212 @@
+# Templates paths
+templates:
+  get:
+    tags:
+      - Templates
+    summary: Get templates
+    description: Returns a paginated list of active Templates visible to the current user
+    operationId: getTemplates
+    parameters:
+      - name: status
+        in: query
+        description: Filter templates by status
+        required: false
+        schema:
+          type: string
+          enum:
+            - active
+            - archived
+            - trashed
+    responses:
+      '200':
+        description: List of templates
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/templates.yaml#/Template"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+  post:
+    tags:
+      - Templates
+    summary: Create a template
+    description: Creates a new template
+    operationId: createTemplate
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+    responses:
+      '201':
+        description: Template created successfully
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/templates.yaml#/Template"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create templates
+      '422':
+        description: Unprocessable entity (validation failed)
+      '507':
+        description: Account project/team limit reached
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+
+template:
+  get:
+    tags:
+      - Templates
+    summary: Get a template
+    description: Returns details of a specific template
+    operationId: getTemplate
+    parameters:
+      - name: templateId
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Template details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/templates.yaml#/Template"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this template
+      '404':
+        description: Not Found - Specified template does not exist
+  put:
+    tags:
+      - Templates
+    summary: Update a template
+    description: Updates a specific template
+    operationId: updateTemplate
+    parameters:
+      - name: templateId
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+    responses:
+      '200':
+        description: Template updated successfully
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/templates.yaml#/Template"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this template
+      '404':
+        description: Not Found - Specified template does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+  delete:
+    tags:
+      - Templates
+    summary: Trash a template
+    description: Marks a template as trashed
+    operationId: trashTemplate
+    parameters:
+      - name: templateId
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: Template trashed successfully
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to trash this template
+      '404':
+        description: Not Found - Specified template does not exist
+
+project_constructions:
+  post:
+    tags:
+      - Templates
+    summary: Create a project construction
+    description: Creates a new project from a template
+    operationId: createProjectConstruction
+    parameters:
+      - name: templateId
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - project
+            properties:
+              project:
+                type: object
+                required:
+                  - name
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+    responses:
+      '201':
+        description: Project construction created successfully
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/templates.yaml#/ProjectConstruction"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create projects
+      '404':
+        description: Not Found - Specified template does not exist
+      '422':
+        description: Unprocessable entity (validation failed)

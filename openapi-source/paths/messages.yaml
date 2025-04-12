@@ -1,0 +1,154 @@
+# Messages paths
+messages:
+  get:
+    tags:
+      - Messages
+    summary: Get messages
+    description: Returns a list of messages in the specified message board
+    operationId: getMessages
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: messageBoardId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the message board
+    responses:
+      '200':
+        description: List of messages
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/messages.yaml#/Message"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified message board does not exist
+  post:
+    tags:
+      - Messages
+    summary: Create a message
+    description: Creates a new message in the specified message board
+    operationId: createMessage
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: messageBoardId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the message board
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/messages.yaml#/CreateMessage"
+    responses:
+      '201':
+        description: The created message
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/messages.yaml#/Message"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create messages
+      '404':
+        description: Not Found - Specified message board does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+              
+message:
+  get:
+    tags:
+      - Messages
+    summary: Get a message
+    description: Returns details for a specific message
+    operationId: getMessage
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: messageId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the message
+    responses:
+      '200':
+        description: Message details
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/messages.yaml#/Message"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this message
+      '404':
+        description: Not Found - Specified message does not exist
+  put:
+    tags:
+      - Messages
+    summary: Update a message
+    description: Updates a specific message
+    operationId: updateMessage
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: messageId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the message
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/messages.yaml#/UpdateMessage"
+    responses:
+      '200':
+        description: The updated message
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/messages.yaml#/Message"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this message
+      '404':
+        description: Not Found - Specified message does not exist
+      '422':
+        description: Unprocessable entity (validation failed)

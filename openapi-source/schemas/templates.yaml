@@ -1,0 +1,114 @@
+# Templates schemas
+Template:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+      enum:
+        - active
+        - archived
+        - trashed
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    name:
+      type: string
+    description:
+      type: string
+    url:
+      type: string
+      format: uri
+    app_url:
+      type: string
+      format: uri
+    dock:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          title:
+            type: string
+          name:
+            type: string
+          enabled:
+            type: boolean
+          position:
+            type: [integer, "null"]
+          url:
+            type: string
+            format: uri
+          app_url:
+            type: string
+            format: uri
+
+ProjectConstruction:
+  type: object
+  properties:
+    id:
+      type: integer
+    status:
+      type: string
+      enum:
+        - pending
+        - completed
+    url:
+      type: string
+      format: uri
+    project:
+      type: object
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        name:
+          type: string
+        description:
+          type: [string, "null"]
+        purpose:
+          type: string
+        clients_enabled:
+          type: boolean
+        bookmark_url:
+          type: string
+          format: uri
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+        dock:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              title:
+                type: string
+              name:
+                type: string
+              enabled:
+                type: boolean
+              position:
+                type: [integer, "null"]
+              url:
+                type: string
+                format: uri
+              app_url:
+                type: string
+                format: uri

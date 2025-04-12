@@ -1,0 +1,109 @@
+# Card Table Columns schemas
+Column:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1069482092
+    status:
+      type: string
+      example: active
+    visible_to_clients:
+      type: boolean
+      example: false
+    created_at:
+      type: string
+      format: date-time
+      example: "2022-11-18T09:51:27.242Z"
+    updated_at:
+      type: string
+      format: date-time
+      example: "2022-11-18T09:51:41.806Z"
+    title:
+      type: string
+      example: Triage
+    inherits_status:
+      type: boolean
+      example: true
+    type:
+      type: string
+      example: Kanban::Triage
+    url:
+      type: string
+      format: uri
+      example: "https://3.basecampapi.com/195539477/buckets/2085958499/card_tables/columns/1069482092.json"
+    app_url:
+      type: string
+      format: uri
+      example: "https://3.basecamp.com/195539477/buckets/2085958499/card_tables/columns/1069482092"
+    bookmark_url:
+      type: string
+      format: uri
+      example: "https://3.basecampapi.com/195539477/my/bookmarks/BAh7CEkiCGdpZAY6BkVUSSIuZ2lkOi8vYmMzL1JlY29yZGluZy8xMDY5NDgyMDkyP2V4cGlyZXNfaW4GOwBUSSIMcHVycG9zZQY7AFRJIg1yZWFkYWJsZQY7AFRJIg9leHBpcmVzX2F0BjsAVDA=--4e5003c6ebe9d448a770f00a1b3da52b6f668c65.json"
+    parent:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1069482091
+        title:
+          type: string
+          example: Card Table
+        type:
+          type: string
+          example: Kanban::Board
+        url:
+          type: string
+          format: uri
+          example: "https://3.basecampapi.com/195539477/buckets/2085958499/card_tables/1069482091.json"
+        app_url:
+          type: string
+          format: uri
+          example: "https://3.basecamp.com/195539477/buckets/2085958499/card_tables/1069482091"
+    bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2085958499
+        name:
+          type: string
+          example: The Leto Laptop
+        type:
+          type: string
+          example: Project
+    creator:
+      $ref: "./people.yaml#/Person"
+    description:
+      type: [string, "null"]
+    subscribers:
+      type: array
+      items:
+        type: object
+    color:
+      type: [string, "null"]
+      enum:
+        - white
+        - red
+        - orange
+        - yellow
+        - green
+        - blue
+        - aqua
+        - purple
+        - gray
+        - pink
+        - brown
+    cards_count:
+      type: integer
+      example: 1
+    comment_count:
+      type: integer
+      example: 0
+    cards_url:
+      type: string
+      format: uri
+      example: "https://3.basecampapi.com/195539477/buckets/2085958499/card_tables/lists/1069482092/cards.json"
+      
+CardTableColumn:
+  $ref: "#/Column"

@@ -1,0 +1,98 @@
+# Lineup Markers endpoints
+
+create_marker:
+  tags:
+    - Lineup Markers
+  operationId: createLineupMarker
+  summary: Create a marker
+  description: |
+    Creates an account-wide marker that shows up in the Lineup.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../schemas/lineup_markers.yaml#/CreateLineupMarker"
+  responses:
+    201:
+      description: Created - empty response body
+    400:
+      description: Bad request - invalid parameters
+    401:
+      description: Unauthorized - invalid or expired token
+    403:
+      description: Forbidden - insufficient permissions
+    422:
+      description: Unprocessable entity - validation failed
+    429:
+      description: Too many requests - rate limit exceeded
+  security:
+    - oauth2: []
+
+update_marker:
+  tags:
+    - Lineup Markers
+  operationId: updateLineupMarker
+  summary: Update a marker
+  description: |
+    Changes the name and/or date of the specified marker.
+  parameters:
+    - name: markerId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The ID of the marker
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../schemas/lineup_markers.yaml#/UpdateLineupMarker"
+  responses:
+    200:
+      description: OK - empty response body
+    400:
+      description: Bad request - invalid parameters
+    401:
+      description: Unauthorized - invalid or expired token
+    403:
+      description: Forbidden - insufficient permissions
+    404:
+      description: Not found - marker doesn't exist
+    422:
+      description: Unprocessable entity - validation failed
+    429:
+      description: Too many requests - rate limit exceeded
+  security:
+    - oauth2: []
+
+delete_marker:
+  tags:
+    - Lineup Markers
+  operationId: deleteLineupMarker
+  summary: Delete a marker
+  description: |
+    Permanently destroys the specified marker immediately.
+  parameters:
+    - name: markerId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The ID of the marker
+  responses:
+    204:
+      description: No content - successful deletion
+    400:
+      description: Bad request - invalid parameters
+    401:
+      description: Unauthorized - invalid or expired token
+    403:
+      description: Forbidden - insufficient permissions
+    404:
+      description: Not found - marker doesn't exist
+    429:
+      description: Too many requests - rate limit exceeded
+  security:
+    - oauth2: []

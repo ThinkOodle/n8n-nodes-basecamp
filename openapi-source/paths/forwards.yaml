@@ -1,0 +1,70 @@
+# Forwards paths
+forwards:
+  get:
+    tags:
+      - Forwards
+    summary: Get forwards
+    description: Returns a paginated list of active forwards in the specified inbox
+    operationId: getForwards
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: inboxId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the inbox
+    responses:
+      '200':
+        description: List of forwards
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/forwards.yaml#/Forward"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified inbox does not exist
+                
+forward:
+  get:
+    tags:
+      - Forwards
+    summary: Get a forward
+    description: Returns a specific forward
+    operationId: getForward
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: forwardId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the forward
+    responses:
+      '200':
+        description: The forward
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/forwards.yaml#/Forward"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access this forward
+      '404':
+        description: Not Found - Specified forward does not exist

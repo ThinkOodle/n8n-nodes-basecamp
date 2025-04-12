@@ -1,0 +1,10 @@
+# Client visibility schemas
+
+ClientVisibility:
+  type: object
+  required:
+    - visible_to_clients
+  properties:
+    visible_to_clients:
+      type: boolean
+      description: Whether the recording should be visible to clients

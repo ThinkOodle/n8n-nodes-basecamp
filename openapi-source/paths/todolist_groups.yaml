@@ -1,0 +1,142 @@
+# To-do List Groups paths
+todolist_groups:
+  get:
+    tags:
+      - Todolist Groups
+    summary: List to-do list groups
+    description: Returns a paginated list of active groups in the to-do list
+    operationId: getTodolistGroups
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todolistId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do list
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum: [archived, trashed]
+        description: Filter by to-do list group status
+    responses:
+      '200':
+        description: List of to-do list groups
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/todolists.yaml#/Todolist"
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to access these resources
+      '404':
+        description: Not Found - Specified to-do list does not exist
+  post:
+    tags:
+      - Todolist Groups
+    summary: Create a to-do list group
+    description: Creates a to-do group within the specified to-do list
+    operationId: createTodolistGroup
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: todolistId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do list
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+                description: The name of the to-do list group
+              color:
+                type: string
+                enum: [white, red, orange, yellow, green, blue, aqua, purple, gray, pink, brown]
+                description: The color of the to-do list group
+    responses:
+      '201':
+        description: The created to-do list group
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/todolists.yaml#/Todolist"
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to create to-do list groups
+      '404':
+        description: Not Found - Specified to-do list does not exist
+      '422':
+        description: Unprocessable entity (validation failed)
+
+todolist_group_position:
+  put:
+    tags:
+      - Todolist Groups
+    summary: Reposition a to-do list group
+    description: Changes the position of the to-do list group
+    operationId: repositionTodolistGroup
+    parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the project (bucket)
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the to-do list group
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - position
+            properties:
+              position:
+                type: integer
+                description: The new position for the to-do list group
+                minimum: 1
+    responses:
+      '204':
+        description: To-do list group position updated successfully
+      '400':
+        description: Bad Request - Invalid input
+      '401':
+        description: Unauthorized - Authentication is required
+      '403':
+        description: Forbidden - Not permitted to update this to-do list group
+      '404':
+        description: Not Found - Specified to-do list group does not exist
+      '422':
+        description: Unprocessable entity (validation failed)

@@ -1,6 +1,6 @@
 {
 	"name": "@thinkoodle/n8n-nodes-basecamp-4",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Basecamp 4 API Node for n8n",
 	"keywords": [
 		"n8n-community-node-package"
@@ -36,7 +36,7 @@
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"credentials": [
-			"dist/credentials/Basecamp4OAuth2Api.credentials.ts"
+			"dist/credentials/Basecamp4OAuth2Api.credentials.js"
 		],
 		"nodes": [
 			"dist/nodes/Basecamp4/Basecamp4.node.js"

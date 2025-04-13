@@ -28,13 +28,13 @@ paths:
   # Card Tables
   /buckets/{bucketId}/card_tables/{cardTableId}.json:
     $ref: './paths/card_tables.yaml#/card_table'
-  /buckets/{bucketId}/card_tables/columns/{columnId}/cards.json:
+  /buckets/{bucketId}/card_tables/lists/{columnId}/cards.json:
     $ref: './paths/card_table_cards.yaml#/card_table_cards'
   /buckets/{bucketId}/card_tables/cards/{cardId}.json:
     $ref: './paths/card_table_cards.yaml#/card_table_card'
   /buckets/{bucketId}/card_tables/cards/{cardId}/moves.json:
     $ref: './paths/card_table_cards.yaml#/card_table_card_moves'
-  /buckets/{bucketId}/card_tables/columns/{columnId}.json:
+  /buckets/{bucketId}/card_tables/lists/{columnId}.json:
     $ref: './paths/card_table_columns.yaml#/card_table_column'
   /buckets/{bucketId}/card_tables/{cardTableId}/columns.json:
     $ref: './paths/card_table_columns.yaml#/card_table_columns'

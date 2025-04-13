@@ -383,7 +383,7 @@
         }
       }
     },
-    "/buckets/{bucketId}/card_tables/columns/{columnId}/cards.json": {
+    "/buckets/{bucketId}/card_tables/lists/{columnId}/cards.json": {
       "get": {
         "tags": [
           "Card Tables"
@@ -705,7 +705,7 @@
         }
       }
     },
-    "/buckets/{bucketId}/card_tables/columns/{columnId}.json": {
+    "/buckets/{bucketId}/card_tables/lists/{columnId}.json": {
       "get": {
         "tags": [
           "Card Tables"

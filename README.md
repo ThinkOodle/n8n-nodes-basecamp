@@ -27,14 +27,5 @@ Authenticate using the Basecamp OAuth2 API credential. If an account ID is provi
 * [Basecamp API Documentation](https://github.com/basecamp/bc3-api)
 
 ## Development
-This node is built using [n8n-openapi-node](https://github.com/devlikeapro/n8n-openapi-node). The openapi specification is located in `openapi-source` and was built based on the [Basecamp API](https://github.com/basecamp/bc3-api).
-
-### Update API
-To make changes to the API, update the `openapi-source/*.yaml` files and then run the following command:
-
-```
-redocly bundle openapi-source/openapi.yaml -o nodes/Basecamp4/openapi.json
-```
-
 ### Testing Locally
 Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.

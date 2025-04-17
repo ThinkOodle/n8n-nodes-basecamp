@@ -1,0 +1,4 @@
+[env]
+N8N_LOG_LEVEL = "debug"
+DB_LOGGING_OPTIONS = "all"
+CODE_ENABLE_STDOUT = "true"

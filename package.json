@@ -1,6 +1,6 @@
 {
 	"name": "@thinkoodle/n8n-nodes-basecamp-4",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"description": "Basecamp 4 API Node for n8n",
 	"keywords": [
 		"n8n-community-node-package"
@@ -53,7 +53,5 @@
 	"peerDependencies": {
 		"n8n-workflow": "*"
 	},
-	"dependencies": {
-		"@devlikeapro/n8n-openapi-node": "^0.1.4"
-	}
+	"dependencies": {}
 }

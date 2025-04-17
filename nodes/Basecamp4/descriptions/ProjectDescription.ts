@@ -14,19 +14,7 @@ export const projectOperations: INodeProperties[] = [
 		default: 'getProjects',
 		options: [
 		{
-			name: 'Get projects',
-			value: 'getProjects',
-			action: 'Get projects',
-			description: 'Returns a list of active projects visible to the current user',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/projects.json'
-				}
-			}
-		},
-		{
-			name: 'Create a project',
+			name: 'Create a Project',
 			value: 'createProject',
 			action: 'Create a project',
 			description: 'Creates a new project',
@@ -38,7 +26,7 @@ export const projectOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get a project',
+			name: 'Get a Project',
 			value: 'getProject',
 			action: 'Get a project',
 			description: 'Returns details for a specific project',
@@ -50,25 +38,37 @@ export const projectOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Update a project',
-			value: 'updateProject',
-			action: 'Update a project',
-			description: 'Updates a specific project',
+			name: 'Get Projects',
+			value: 'getProjects',
+			action: 'Get projects',
+			description: 'Returns a list of active projects visible to the current user',
 			routing: {
 				request: {
-					method: 'PUT',
-					url: '=/projects/{{ $parameter["projectId"] }}.json'
+					method: 'GET',
+					url: '=/projects.json'
 				}
 			}
 		},
 		{
-			name: 'Trash a project',
+			name: 'Trash a Project',
 			value: 'trashProject',
 			action: 'Trash a project',
 			description: 'Marks a project as trashed',
 			routing: {
 				request: {
 					method: 'DELETE',
+					url: '=/projects/{{ $parameter["projectId"] }}.json'
+				}
+			}
+		},
+		{
+			name: 'Update a Project',
+			value: 'updateProject',
+			action: 'Update a project',
+			description: 'Updates a specific project',
+			routing: {
+				request: {
+					method: 'PUT',
 					url: '=/projects/{{ $parameter["projectId"] }}.json'
 				}
 			}
@@ -100,7 +100,6 @@ export const projectFields: INodeProperties[] = [
 		name: 'status',
 		type: 'string',
 		default: "active",
-		required: false,
 		description: 'Filter by project status',
 		displayOptions: {
 			show: {
@@ -162,7 +161,6 @@ export const projectFields: INodeProperties[] = [
 		name: 'description',
 		type: 'string',
 		default: "",
-		required: false,
 		description: 'Optional description of the new project',
 		displayOptions: {
 			show: {

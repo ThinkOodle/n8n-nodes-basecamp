@@ -14,7 +14,7 @@ export const uploadOperations: INodeProperties[] = [
 		default: 'getUploads',
 		options: [
 		{
-			name: 'Get uploads',
+			name: 'Get Uploads',
 			value: 'getUploads',
 			action: 'Get uploads',
 			description: 'Returns a list of uploads in the specified vault',
@@ -26,7 +26,7 @@ export const uploadOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Create an upload',
+			name: 'Create an Upload',
 			value: 'createUpload',
 			action: 'Create an upload',
 			description: 'Creates a new upload in the specified vault',
@@ -38,7 +38,7 @@ export const uploadOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get an upload',
+			name: 'Get an Upload',
 			value: 'getUpload',
 			action: 'Get an upload',
 			description: 'Returns details for a specific upload',
@@ -50,7 +50,7 @@ export const uploadOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Update an upload',
+			name: 'Update an Upload',
 			value: 'updateUpload',
 			action: 'Update an upload',
 			description: 'Updates a specific upload',
@@ -163,7 +163,7 @@ export const uploadFields: INodeProperties[] = [
 		type: 'string',
 		default: "",
 		required: true,
-		description: 'The SGID for the attachment to upload. Obtained from the Create an attachment endpoint',
+		description: 'The SGID for the attachment to upload. Obtained from the Create an attachment endpoint.',
 		displayOptions: {
 			show: {
 				resource: ['upload'],
@@ -184,8 +184,7 @@ export const uploadFields: INodeProperties[] = [
 		name: 'description',
 		type: 'string',
 		default: "",
-		required: false,
-		description: 'Optional description of the upload. May contain HTML',
+		description: 'Optional description of the upload. May contain HTML.',
 		displayOptions: {
 			show: {
 				resource: ['upload'],
@@ -206,7 +205,6 @@ export const uploadFields: INodeProperties[] = [
 		name: 'baseName',
 		type: 'string',
 		default: "",
-		required: false,
 		description: 'Optional new base filename for the upload (without extension)',
 		displayOptions: {
 			show: {
@@ -340,7 +338,7 @@ export const uploadFields: INodeProperties[] = [
 						name: 'description',
 						type: 'string',
 						default: '',
-						description: 'The description of the upload. May contain HTML',
+						description: 'The description of the upload. May contain HTML.',
 						routing: {
 							send: {
 								property: 'description',

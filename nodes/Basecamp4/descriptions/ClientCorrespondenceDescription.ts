@@ -14,26 +14,26 @@ export const clientCorrespondenceOperations: INodeProperties[] = [
 		default: 'getClientCorrespondences',
 		options: [
 		{
-			name: 'Get client correspondences',
-			value: 'getClientCorrespondences',
-			action: 'Get client correspondences',
-			description: 'Returns a paginated list of client correspondences in the specified project.',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/buckets/{{ $parameter["bucketId"] }}/client/correspondences.json'
-				}
-			}
-		},
-		{
-			name: 'Get a client correspondence',
+			name: 'Get a Client Correspondence',
 			value: 'getClientCorrespondence',
 			action: 'Get a client correspondence',
-			description: 'Returns the client correspondence with the specified ID in the specified project.',
+			description: 'Returns the client correspondence with the specified ID in the specified project',
 			routing: {
 				request: {
 					method: 'GET',
 					url: '=/buckets/{{ $parameter["bucketId"] }}/client/correspondences/{{ $parameter["correspondenceId"] }}.json'
+				}
+			}
+		},
+		{
+			name: 'Get Client Correspondences',
+			value: 'getClientCorrespondences',
+			action: 'Get client correspondences',
+			description: 'Returns a paginated list of client correspondences in the specified project',
+			routing: {
+				request: {
+					method: 'GET',
+					url: '=/buckets/{{ $parameter["bucketId"] }}/client/correspondences.json'
 				}
 			}
 		}
@@ -92,7 +92,7 @@ export const clientCorrespondenceFields: INodeProperties[] = [
 	         ClientCorrespondence: getClientCorrespondence Parameters
 	----------------------------------------*/
 	{
-		displayName: 'bucketId',
+		displayName: 'Project ID',
 		name: 'bucketId',
 		type: 'number',
 		default: 0,

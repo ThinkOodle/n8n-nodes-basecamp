@@ -14,10 +14,10 @@ export const lineupMarkerOperations: INodeProperties[] = [
 		default: 'createLineupMarker',
 		options: [
 			{
-				name: 'Create a marker',
+				name: 'Create a Marker',
 				value: 'createLineupMarker',
 				action: 'Create a marker',
-				description: 'Creates an account-wide marker that shows up in the Lineup.',
+				description: 'Creates an account-wide marker that shows up in the Lineup',
 				routing: {
 					request: {
 						method: 'POST',
@@ -26,10 +26,10 @@ export const lineupMarkerOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Update a marker',
+				name: 'Update a Marker',
 				value: 'updateLineupMarker',
 				action: 'Update a marker',
-				description: 'Changes the name and/or date of the specified marker.',
+				description: 'Changes the name and/or date of the specified marker',
 				routing: {
 					request: {
 						method: 'PUT',
@@ -38,10 +38,10 @@ export const lineupMarkerOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Delete a marker',
+				name: 'Delete a Marker',
 				value: 'deleteLineupMarker',
 				action: 'Delete a marker',
-				description: 'Permanently destroys the specified marker immediately.',
+				description: 'Permanently destroys the specified marker immediately',
 				routing: {
 					request: {
 						method: 'DELETE',

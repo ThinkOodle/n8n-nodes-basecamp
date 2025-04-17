@@ -14,7 +14,7 @@ export const commentOperations: INodeProperties[] = [
 		default: 'getComments',
 		options: [
 			{
-				name: 'Get comments',
+				name: 'Get Comments',
 				value: 'getComments',
 				action: 'Get comments',
 				description: 'Returns a list of comments for the specified recording',
@@ -26,7 +26,7 @@ export const commentOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Create a comment',
+				name: 'Create a Comment',
 				value: 'createComment',
 				action: 'Create a comment',
 				description: 'Creates a new comment on the specified recording',
@@ -38,7 +38,7 @@ export const commentOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Get a comment',
+				name: 'Get a Comment',
 				value: 'getComment',
 				action: 'Get a comment',
 				description: 'Returns details for a specific comment',
@@ -50,7 +50,7 @@ export const commentOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Update a comment',
+				name: 'Update a Comment',
 				value: 'updateComment',
 				action: 'Update a comment',
 				description: 'Updates a specific comment',
@@ -168,7 +168,7 @@ export const commentFields: INodeProperties[] = [
 		},
 		default: '',
 		required: true,
-		description: 'The content of the comment. May contain HTML',
+		description: 'The content of the comment. May contain HTML.',
 		displayOptions: {
 			show: {
 				resource: ['comment'],
@@ -287,7 +287,7 @@ export const commentFields: INodeProperties[] = [
 		},
 		default: '',
 		required: true,
-		description: 'The content of the comment. May contain HTML',
+		description: 'The content of the comment. May contain HTML.',
 		displayOptions: {
 			show: {
 				resource: ['comment'],

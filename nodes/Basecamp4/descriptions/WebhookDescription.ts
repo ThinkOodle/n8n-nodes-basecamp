@@ -14,19 +14,7 @@ export const webhookOperations: INodeProperties[] = [
 		default: 'getWebhooks',
 		options: [
 		{
-			name: 'Get webhooks',
-			value: 'getWebhooks',
-			action: 'Get webhooks',
-			description: 'Returns a list of webhooks in the specified project',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/buckets/{{ $parameter["bucketId"] }}/webhooks.json'
-				}
-			}
-		},
-		{
-			name: 'Create a webhook',
+			name: 'Create a Webhook',
 			value: 'createWebhook',
 			action: 'Create a webhook',
 			description: 'Creates a new webhook in the specified project',
@@ -38,7 +26,19 @@ export const webhookOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get a webhook',
+			name: 'Delete a Webhook',
+			value: 'deleteWebhook',
+			action: 'Delete a webhook',
+			description: 'Permanently deletes a webhook',
+			routing: {
+				request: {
+					method: 'DELETE',
+					url: '=/buckets/{{ $parameter["bucketId"] }}/webhooks/{{ $parameter["webhookId"] }}.json'
+				}
+			}
+		},
+		{
+			name: 'Get a Webhook',
 			value: 'getWebhook',
 			action: 'Get a webhook',
 			description: 'Returns details for a specific webhook including recent deliveries',
@@ -50,25 +50,25 @@ export const webhookOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Update a webhook',
+			name: 'Get Webhooks',
+			value: 'getWebhooks',
+			action: 'Get webhooks',
+			description: 'Returns a list of webhooks in the specified project',
+			routing: {
+				request: {
+					method: 'GET',
+					url: '=/buckets/{{ $parameter["bucketId"] }}/webhooks.json'
+				}
+			}
+		},
+		{
+			name: 'Update a Webhook',
 			value: 'updateWebhook',
 			action: 'Update a webhook',
 			description: 'Updates a specific webhook',
 			routing: {
 				request: {
 					method: 'PUT',
-					url: '=/buckets/{{ $parameter["bucketId"] }}/webhooks/{{ $parameter["webhookId"] }}.json'
-				}
-			}
-		},
-		{
-			name: 'Delete a webhook',
-			value: 'deleteWebhook',
-			action: 'Delete a webhook',
-			description: 'Permanently deletes a webhook',
-			routing: {
-				request: {
-					method: 'DELETE',
 					url: '=/buckets/{{ $parameter["bucketId"] }}/webhooks/{{ $parameter["webhookId"] }}.json'
 				}
 			}
@@ -168,7 +168,6 @@ export const webhookFields: INodeProperties[] = [
 		name: 'types',
 		type: 'string',
 		default: "",
-		required: false,
 		description: 'The types of events that will trigger this webhook',
 		displayOptions: {
 			show: {

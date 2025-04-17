@@ -14,21 +14,9 @@ export const todolistOperations: INodeProperties[] = [
 		default: 'getTodolists',
 		options: [
 		{
-			name: 'Get to-do lists',
-			value: 'getTodolists',
-			action: 'Get to-do lists',
-			description: 'Returns a list of to-do lists in the specified project',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/buckets/{{ $parameter["bucketId"] }}/todosets/{{ $parameter["todosetId"] }}/todolists.json'
-				}
-			}
-		},
-		{
-			name: 'Create a to-do list',
+			name: 'Create a to-Do List',
 			value: 'createTodolist',
-			action: 'Create a to-do list',
+			action: 'Create a to do list',
 			description: 'Creates a new to-do list in the specified project',
 			routing: {
 				request: {
@@ -38,9 +26,9 @@ export const todolistOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get a to-do list',
+			name: 'Get a to-Do List',
 			value: 'getTodolist',
-			action: 'Get a to-do list',
+			action: 'Get a to do list',
 			description: 'Returns details for a specific to-do list',
 			routing: {
 				request: {
@@ -50,25 +38,37 @@ export const todolistOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Update a to-do list',
-			value: 'updateTodolist',
-			action: 'Update a to-do list',
-			description: 'Updates a specific to-do list',
+			name: 'Get to-Do Lists',
+			value: 'getTodolists',
+			action: 'Get to do lists',
+			description: 'Returns a list of to-do lists in the specified project',
 			routing: {
 				request: {
-					method: 'PUT',
+					method: 'GET',
+					url: '=/buckets/{{ $parameter["bucketId"] }}/todosets/{{ $parameter["todosetId"] }}/todolists.json'
+				}
+			}
+		},
+		{
+			name: 'Trash a to-Do List',
+			value: 'trashTodolist',
+			action: 'Trash a to do list',
+			description: 'Marks the to-do list with the given ID as trashed',
+			routing: {
+				request: {
+					method: 'DELETE',
 					url: '=/buckets/{{ $parameter["bucketId"] }}/todolists/{{ $parameter["todolistId"] }}.json'
 				}
 			}
 		},
 		{
-			name: 'Trash a to-do list',
-			value: 'trashTodolist',
-			action: 'Trash a to-do list',
-			description: 'Marks the to-do list with the given ID as trashed',
+			name: 'Update a to-Do List',
+			value: 'updateTodolist',
+			action: 'Update a to do list',
+			description: 'Updates a specific to-do list',
 			routing: {
 				request: {
-					method: 'DELETE',
+					method: 'PUT',
 					url: '=/buckets/{{ $parameter["bucketId"] }}/todolists/{{ $parameter["todolistId"] }}.json'
 				}
 			}
@@ -110,7 +110,7 @@ export const todolistFields: INodeProperties[] = [
 		}
 	},
 	{
-		displayName: 'To-do Set ID',
+		displayName: 'To-Do Set ID',
 		name: 'todosetId',
 		type: 'number',
 		default: 0,
@@ -128,7 +128,6 @@ export const todolistFields: INodeProperties[] = [
 		name: 'status',
 		type: 'string',
 		default: "archived",
-		required: false,
 		description: 'Filter to-do lists by status',
 		displayOptions: {
 			show: {
@@ -218,8 +217,7 @@ export const todolistFields: INodeProperties[] = [
 		name: 'description',
 		type: 'string',
 		default: "",
-		required: false,
-		description: 'Optional description of the todolist. May contain HTML',
+		description: 'Optional description of the todolist. May contain HTML.',
 		displayOptions: {
 			show: {
 				resource: ['todolist'],
@@ -268,7 +266,7 @@ export const todolistFields: INodeProperties[] = [
 		}
 	},
 	{
-		displayName: 'To-do List ID',
+		displayName: 'To-Do List ID',
 		name: 'todolistId',
 		type: 'number',
 		default: 0,
@@ -373,7 +371,7 @@ export const todolistFields: INodeProperties[] = [
 						name: 'description',
 						type: 'string',
 						default: '',
-						description: 'Description of the todolist. May contain HTML',
+						description: 'Description of the todolist. May contain HTML.',
 						routing: {
 							send: {
 								property: 'description',

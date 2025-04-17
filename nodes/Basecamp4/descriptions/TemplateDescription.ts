@@ -14,19 +14,19 @@ export const templateOperations: INodeProperties[] = [
 		default: 'getTemplates',
 		options: [
 		{
-			name: 'Get templates',
-			value: 'getTemplates',
-			action: 'Get templates',
-			description: 'Returns a paginated list of active Templates visible to the current user',
+			name: 'Create a Project Construction',
+			value: 'createProjectConstruction',
+			action: 'Create a project construction',
+			description: 'Creates a new project from a template',
 			routing: {
 				request: {
-					method: 'GET',
-					url: '=/templates.json'
+					method: 'POST',
+					url: '=/templates/{{ $parameter["templateId"] }}/project_constructions.json'
 				}
 			}
 		},
 		{
-			name: 'Create a template',
+			name: 'Create a Template',
 			value: 'createTemplate',
 			action: 'Create a template',
 			description: 'Creates a new template',
@@ -38,7 +38,7 @@ export const templateOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get a template',
+			name: 'Get a Template',
 			value: 'getTemplate',
 			action: 'Get a template',
 			description: 'Returns details of a specific template',
@@ -50,19 +50,19 @@ export const templateOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Update a template',
-			value: 'updateTemplate',
-			action: 'Update a template',
-			description: 'Updates a specific template',
+			name: 'Get Templates',
+			value: 'getTemplates',
+			action: 'Get templates',
+			description: 'Returns a paginated list of active Templates visible to the current user',
 			routing: {
 				request: {
-					method: 'PUT',
-					url: '=/templates/{{ $parameter["templateId"] }}.json'
+					method: 'GET',
+					url: '=/templates.json'
 				}
 			}
 		},
 		{
-			name: 'Trash a template',
+			name: 'Trash a Template',
 			value: 'trashTemplate',
 			action: 'Trash a template',
 			description: 'Marks a template as trashed',
@@ -74,14 +74,14 @@ export const templateOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Create a project construction',
-			value: 'createProjectConstruction',
-			action: 'Create a project construction',
-			description: 'Creates a new project from a template',
+			name: 'Update a Template',
+			value: 'updateTemplate',
+			action: 'Update a template',
+			description: 'Updates a specific template',
 			routing: {
 				request: {
-					method: 'POST',
-					url: '=/templates/{{ $parameter["templateId"] }}/project_constructions.json'
+					method: 'PUT',
+					url: '=/templates/{{ $parameter["templateId"] }}.json'
 				}
 			}
 		}
@@ -112,7 +112,6 @@ export const templateFields: INodeProperties[] = [
 		name: 'status',
 		type: 'string',
 		default: "active",
-		required: false,
 		description: 'Filter templates by status',
 		displayOptions: {
 			show: {
@@ -173,7 +172,6 @@ export const templateFields: INodeProperties[] = [
 		name: 'description',
 		type: 'string',
 		default: "",
-		required: false,
 		displayOptions: {
 			show: {
 				resource: ['template'],
@@ -374,7 +372,7 @@ export const templateFields: INodeProperties[] = [
 		description: 'Used in the API endpoint path'
 	},
 	{
-		displayName: 'project',
+		displayName: 'Project',
 		name: 'project',
 		type: 'string',
 		default: "{}",

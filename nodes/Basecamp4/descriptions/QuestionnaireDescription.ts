@@ -14,7 +14,7 @@ export const questionnaireOperations: INodeProperties[] = [
 		default: 'getQuestionnaire',
 		options: [
 		{
-			name: 'Get questionnaire',
+			name: 'Get Questionnaire',
 			value: 'getQuestionnaire',
 			action: 'Get questionnaire',
 			description: 'Returns the questionnaire for the project',

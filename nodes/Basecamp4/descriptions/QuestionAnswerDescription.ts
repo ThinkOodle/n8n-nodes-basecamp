@@ -14,7 +14,7 @@ export const questionAnswerOperations: INodeProperties[] = [
 		default: 'getQuestionAnswers',
 		options: [
 		{
-			name: 'Get question answers',
+			name: 'Get Question Answers',
 			value: 'getQuestionAnswers',
 			action: 'Get question answers',
 			description: 'Returns a paginated list of answers to a specific question',
@@ -26,7 +26,7 @@ export const questionAnswerOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get a question answer',
+			name: 'Get a Question Answer',
 			value: 'getQuestionAnswer',
 			action: 'Get a question answer',
 			description: 'Returns a specific answer to a question',

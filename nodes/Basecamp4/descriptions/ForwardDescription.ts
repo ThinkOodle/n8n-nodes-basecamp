@@ -14,7 +14,7 @@ export const forwardOperations: INodeProperties[] = [
 		default: 'getForwards',
 		options: [
 		{
-			name: 'Get forwards',
+			name: 'Get Forwards',
 			value: 'getForwards',
 			action: 'Get forwards',
 			description: 'Returns a paginated list of active forwards in the specified inbox',
@@ -26,7 +26,7 @@ export const forwardOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get a forward',
+			name: 'Get a Forward',
 			value: 'getForward',
 			action: 'Get a forward',
 			description: 'Returns a specific forward',

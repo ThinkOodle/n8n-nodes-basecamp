@@ -14,7 +14,7 @@ export const messageBoardOperations: INodeProperties[] = [
 		default: 'getMessageBoard',
 		options: [
 		{
-			name: 'Get message board',
+			name: 'Get Message Board',
 			value: 'getMessageBoard',
 			action: 'Get message board',
 			description: 'Returns the message board for the specified project',

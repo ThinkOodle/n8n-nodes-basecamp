@@ -14,10 +14,10 @@ export const recordingOperations: INodeProperties[] = [
 		default: 'getRecordings',
 		options: [
 		{
-			name: 'Get recordings',
+			name: 'Get Recordings',
 			value: 'getRecordings',
 			action: 'Get recordings',
-			description: 'Returns a paginated list of recordings for the given type.',
+			description: 'Returns a paginated list of recordings for the given type',
 			routing: {
 				request: {
 					method: 'GET',
@@ -26,10 +26,10 @@ export const recordingOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Trash a recording',
+			name: 'Trash a Recording',
 			value: 'trashRecording',
 			action: 'Trash a recording',
-			description: 'Marks the specified recording as trashed in the specified project.',
+			description: 'Marks the specified recording as trashed in the specified project',
 			routing: {
 				request: {
 					method: 'PUT',
@@ -38,10 +38,10 @@ export const recordingOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Archive a recording',
+			name: 'Archive a Recording',
 			value: 'archiveRecording',
 			action: 'Archive a recording',
-			description: 'Marks the specified recording as archived in the specified project.',
+			description: 'Marks the specified recording as archived in the specified project',
 			routing: {
 				request: {
 					method: 'PUT',
@@ -50,10 +50,10 @@ export const recordingOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Unarchive a recording',
+			name: 'Unarchive a Recording',
 			value: 'unarchiveRecording',
 			action: 'Unarchive a recording',
-			description: 'Marks the specified recording as active in the specified project.',
+			description: 'Marks the specified recording as active in the specified project',
 			routing: {
 				request: {
 					method: 'PUT',
@@ -110,8 +110,7 @@ export const recordingFields: INodeProperties[] = [
 		name: 'bucket',
 		type: 'string',
 		default: "",
-		required: false,
-		description: 'Single or comma separated list of project IDs. Default is all active projects visible to the current user',
+		description: 'Single or comma-separated list of project IDs. Default is all active projects visible to the current user.',
 		displayOptions: {
 			show: {
 				resource: ['recording'],
@@ -132,7 +131,6 @@ export const recordingFields: INodeProperties[] = [
 		name: 'status',
 		type: 'string',
 		default: "active",
-		required: false,
 		description: 'The status of recordings to retrieve',
 		displayOptions: {
 			show: {
@@ -154,7 +152,6 @@ export const recordingFields: INodeProperties[] = [
 		name: 'sort',
 		type: 'string',
 		default: "created_at",
-		required: false,
 		description: 'The field to sort by',
 		displayOptions: {
 			show: {
@@ -176,8 +173,6 @@ export const recordingFields: INodeProperties[] = [
 		name: 'direction',
 		type: 'string',
 		default: "desc",
-		required: false,
-		description: 'The sort direction',
 		displayOptions: {
 			show: {
 				resource: ['recording'],

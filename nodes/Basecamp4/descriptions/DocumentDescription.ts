@@ -14,7 +14,7 @@ export const documentOperations: INodeProperties[] = [
 		default: 'getDocuments',
 		options: [
 			{
-				name: 'Get documents',
+				name: 'Get Documents',
 				value: 'getDocuments',
 				action: 'Get documents',
 				description: 'Returns a list of documents in the specified vault',
@@ -26,7 +26,7 @@ export const documentOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Create a document',
+				name: 'Create a Document',
 				value: 'createDocument',
 				action: 'Create a document',
 				description: 'Creates a new document in the specified vault',
@@ -38,7 +38,7 @@ export const documentOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Get a document',
+				name: 'Get a Document',
 				value: 'getDocument',
 				action: 'Get a document',
 				description: 'Returns details for a specific document',
@@ -50,7 +50,7 @@ export const documentOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Update a document',
+				name: 'Update a Document',
 				value: 'updateDocument',
 				action: 'Update a document',
 				description: 'Updates a specific document',
@@ -190,7 +190,7 @@ export const documentFields: INodeProperties[] = [
 		},
 		default: '',
 		required: true,
-		description: 'The content of the document. May contain HTML',
+		description: 'The content of the document. May contain HTML.',
 		displayOptions: {
 			show: {
 				resource: ['document'],
@@ -211,7 +211,6 @@ export const documentFields: INodeProperties[] = [
 		name: 'status',
 		type: 'string',
 		default: '',
-		required: false,
 		description: 'Set to active to publish immediately',
 		displayOptions: {
 			show: {
@@ -352,7 +351,7 @@ export const documentFields: INodeProperties[] = [
 		},
 		default: '',
 		required: true,
-		description: 'The content of the document. May contain HTML',
+		description: 'The content of the document. May contain HTML.',
 		displayOptions: {
 			show: {
 				resource: ['document'],

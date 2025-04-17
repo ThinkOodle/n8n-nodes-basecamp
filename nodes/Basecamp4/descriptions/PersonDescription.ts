@@ -14,19 +14,7 @@ export const personOperations: INodeProperties[] = [
 		default: 'getPeople',
 		options: [
 		{
-			name: 'Get people',
-			value: 'getPeople',
-			action: 'Get people',
-			description: 'Returns a list of all people visible to the current user',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/people.json'
-				}
-			}
-		},
-		{
-			name: 'Get a person',
+			name: 'Get a Person',
 			value: 'getPerson',
 			action: 'Get a person',
 			description: 'Returns the profile information for a specific person',
@@ -38,7 +26,7 @@ export const personOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get my profile',
+			name: 'Get My Profile',
 			value: 'getMyProfile',
 			action: 'Get my profile',
 			description: 'Returns the profile of the current user',
@@ -50,7 +38,31 @@ export const personOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get people on a project',
+			name: 'Get People',
+			value: 'getPeople',
+			action: 'Get people',
+			description: 'Returns a list of all people visible to the current user',
+			routing: {
+				request: {
+					method: 'GET',
+					url: '=/people.json'
+				}
+			}
+		},
+		{
+			name: 'Get People in My Company/firm',
+			value: 'getCompanyPeople',
+			action: 'Get people in my company firm',
+			description: 'Returns a list of people in the current user\'s company/firm',
+			routing: {
+				request: {
+					method: 'GET',
+					url: '=/my/company/people.json'
+				}
+			}
+		},
+		{
+			name: 'Get People on a Project',
 			value: 'getProjectPeople',
 			action: 'Get people on a project',
 			description: 'Returns a list of people with access to a specific project',
@@ -62,7 +74,7 @@ export const personOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Manage people on a project',
+			name: 'Manage People on a Project',
 			value: 'manageProjectUsers',
 			action: 'Manage people on a project',
 			description: 'Grant and revoke people\'s access to a project',
@@ -70,18 +82,6 @@ export const personOperations: INodeProperties[] = [
 				request: {
 					method: 'PUT',
 					url: '=/projects/{{ $parameter["projectId"] }}/people/users.json'
-				}
-			}
-		},
-		{
-			name: 'Get people in my company/firm',
-			value: 'getCompanyPeople',
-			action: 'Get people in my company/firm',
-			description: 'Returns a list of people in the current user\'s company/firm',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/my/company/people.json'
 				}
 			}
 		}
@@ -220,7 +220,6 @@ export const personFields: INodeProperties[] = [
 		name: 'grant',
 		type: 'string',
 		default: "{}",
-		required: false,
 		description: 'Array of people IDs to be granted access',
 		displayOptions: {
 			show: {
@@ -242,7 +241,6 @@ export const personFields: INodeProperties[] = [
 		name: 'revoke',
 		type: 'string',
 		default: "{}",
-		required: false,
 		description: 'Array of people IDs to be revoked access',
 		displayOptions: {
 			show: {
@@ -264,7 +262,6 @@ export const personFields: INodeProperties[] = [
 		name: 'create',
 		type: 'string',
 		default: "{}",
-		required: false,
 		description: 'Array of new people to be created',
 		displayOptions: {
 			show: {

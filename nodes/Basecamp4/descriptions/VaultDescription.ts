@@ -14,7 +14,7 @@ export const vaultOperations: INodeProperties[] = [
 		default: 'getVaults',
 		options: [
 		{
-			name: 'Get vaults',
+			name: 'Get Vaults',
 			value: 'getVaults',
 			action: 'Get vaults',
 			description: 'Returns a list of vaults in the specified vault (folder)',
@@ -26,7 +26,7 @@ export const vaultOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Create a vault',
+			name: 'Create a Vault',
 			value: 'createVault',
 			action: 'Create a vault',
 			description: 'Creates a new vault in the specified parent vault',
@@ -38,7 +38,7 @@ export const vaultOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get a vault',
+			name: 'Get a Vault',
 			value: 'getVault',
 			action: 'Get a vault',
 			description: 'Returns details for a specific vault',
@@ -50,7 +50,7 @@ export const vaultOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Update a vault',
+			name: 'Update a Vault',
 			value: 'updateVault',
 			action: 'Update a vault',
 			description: 'Updates a specific vault',

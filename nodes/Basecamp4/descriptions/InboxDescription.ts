@@ -14,7 +14,7 @@ export const inboxOperations: INodeProperties[] = [
 		default: 'getInbox',
 		options: [
 		{
-			name: 'Get inbox',
+			name: 'Get Inbox',
 			value: 'getInbox',
 			action: 'Get inbox',
 			description: 'Returns the inbox for the specified project',

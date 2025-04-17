@@ -14,7 +14,7 @@ export const scheduleOperations: INodeProperties[] = [
 		default: 'getSchedule',
 		options: [
 		{
-			name: 'Get schedule',
+			name: 'Get Schedule',
 			value: 'getSchedule',
 			action: 'Get schedule',
 			description: 'Returns the schedule for a project',
@@ -26,7 +26,7 @@ export const scheduleOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Update a schedule',
+			name: 'Update a Schedule',
 			value: 'updateSchedule',
 			action: 'Update a schedule',
 			description: 'Updates a project\'s schedule settings',

@@ -14,19 +14,7 @@ export const scheduleEntryOperations: INodeProperties[] = [
 		default: 'getScheduleEntries',
 		options: [
 		{
-			name: 'Get schedule entries',
-			value: 'getScheduleEntries',
-			action: 'Get schedule entries',
-			description: 'Returns a list of entries in the specified schedule',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/buckets/{{ $parameter["bucketId"] }}/schedules/{{ $parameter["scheduleId"] }}/entries.json'
-				}
-			}
-		},
-		{
-			name: 'Create a schedule entry',
+			name: 'Create a Schedule Entry',
 			value: 'createScheduleEntry',
 			action: 'Create a schedule entry',
 			description: 'Creates a new entry in the specified schedule',
@@ -38,7 +26,7 @@ export const scheduleEntryOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get a schedule entry',
+			name: 'Get a Schedule Entry',
 			value: 'getScheduleEntry',
 			action: 'Get a schedule entry',
 			description: 'Returns details for a specific schedule entry',
@@ -50,19 +38,7 @@ export const scheduleEntryOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Update a schedule entry',
-			value: 'updateScheduleEntry',
-			action: 'Update a schedule entry',
-			description: 'Updates a specific schedule entry',
-			routing: {
-				request: {
-					method: 'PUT',
-					url: '=/buckets/{{ $parameter["bucketId"] }}/schedule_entries/{{ $parameter["entryId"] }}.json'
-				}
-			}
-		},
-		{
-			name: 'Get a schedule entry occurrence',
+			name: 'Get a Schedule Entry Occurrence',
 			value: 'getScheduleEntryOccurrence',
 			action: 'Get a schedule entry occurrence',
 			description: 'Returns details for a specific schedule entry occurrence on a date',
@@ -70,6 +46,30 @@ export const scheduleEntryOperations: INodeProperties[] = [
 				request: {
 					method: 'GET',
 					url: '=/buckets/{{ $parameter["bucketId"] }}/schedule_entries/{{ $parameter["entryId"] }}/occurrences/{{ $parameter["date"] }}.json'
+				}
+			}
+		},
+		{
+			name: 'Get Schedule Entries',
+			value: 'getScheduleEntries',
+			action: 'Get schedule entries',
+			description: 'Returns a list of entries in the specified schedule',
+			routing: {
+				request: {
+					method: 'GET',
+					url: '=/buckets/{{ $parameter["bucketId"] }}/schedules/{{ $parameter["scheduleId"] }}/entries.json'
+				}
+			}
+		},
+		{
+			name: 'Update a Schedule Entry',
+			value: 'updateScheduleEntry',
+			action: 'Update a schedule entry',
+			description: 'Updates a specific schedule entry',
+			routing: {
+				request: {
+					method: 'PUT',
+					url: '=/buckets/{{ $parameter["bucketId"] }}/schedule_entries/{{ $parameter["entryId"] }}.json'
 				}
 			}
 		}
@@ -128,7 +128,6 @@ export const scheduleEntryFields: INodeProperties[] = [
 		name: 'status',
 		type: 'string',
 		default: "upcoming",
-		required: false,
 		description: 'Filter entries by status',
 		displayOptions: {
 			show: {
@@ -262,8 +261,7 @@ export const scheduleEntryFields: INodeProperties[] = [
 		name: 'description',
 		type: 'string',
 		default: "",
-		required: false,
-		description: 'More detailed information about the schedule entry. May contain HTML',
+		description: 'More detailed information about the schedule entry. May contain HTML.',
 		displayOptions: {
 			show: {
 				resource: ['scheduleEntry'],
@@ -284,7 +282,6 @@ export const scheduleEntryFields: INodeProperties[] = [
 		name: 'participantIds',
 		type: 'string',
 		default: "{}",
-		required: false,
 		description: 'IDs of people participating in this schedule entry',
 		displayOptions: {
 			show: {
@@ -306,7 +303,6 @@ export const scheduleEntryFields: INodeProperties[] = [
 		name: 'allDay',
 		type: 'boolean',
 		default: false,
-		required: false,
 		description: 'Whether the schedule entry should be an all-day event',
 		displayOptions: {
 			show: {
@@ -328,7 +324,6 @@ export const scheduleEntryFields: INodeProperties[] = [
 		name: 'notify',
 		type: 'boolean',
 		default: false,
-		required: false,
 		description: 'Whether to notify participants about the entry',
 		displayOptions: {
 			show: {
@@ -522,7 +517,7 @@ export const scheduleEntryFields: INodeProperties[] = [
 						name: 'description',
 						type: 'string',
 						default: '',
-						description: 'More detailed information about the schedule entry. May contain HTML',
+						description: 'More detailed information about the schedule entry. May contain HTML.',
 						routing: {
 							send: {
 								property: 'description',

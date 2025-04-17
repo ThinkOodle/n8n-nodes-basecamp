@@ -14,11 +14,10 @@ export const clientReplyOperations: INodeProperties[] = [
 		default: 'getClientReplies',
 		options: [
 			{
-				name: 'Get client replies',
+				name: 'Get Client Replies',
 				value: 'getClientReplies',
 				action: 'Get client replies',
-				description:
-					'Returns a paginated list of client replies for the specified recording in the specified project.',
+				description: 'Returns a paginated list of client replies for the specified recording in the specified project',
 				routing: {
 					request: {
 						method: 'GET',
@@ -27,11 +26,10 @@ export const clientReplyOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Get a client reply',
+				name: 'Get a Client Reply',
 				value: 'getClientReply',
 				action: 'Get a client reply',
-				description:
-					'Returns the client reply with the specified ID for the specified recording in the specified project.',
+				description: 'Returns the client reply with the specified ID for the specified recording in the specified project',
 				routing: {
 					request: {
 						method: 'GET',

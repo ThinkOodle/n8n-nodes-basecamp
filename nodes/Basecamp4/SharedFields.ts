@@ -92,7 +92,7 @@ export const returnAllField: INodeProperties[] = [
 			},
 		},
 		default: false,
-		description: 'Whether to return all results or just the first page',
+		description: 'Whether to return all results or only up to a given limit',
 	},
 ];
 

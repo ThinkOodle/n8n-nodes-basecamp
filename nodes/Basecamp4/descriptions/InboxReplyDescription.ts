@@ -14,7 +14,7 @@ export const inboxReplyOperations: INodeProperties[] = [
 		default: 'getInboxReplies',
 		options: [
 		{
-			name: 'Get inbox replies',
+			name: 'Get Inbox Replies',
 			value: 'getInboxReplies',
 			action: 'Get inbox replies',
 			description: 'Returns a paginated list of inbox replies for a forward',
@@ -26,7 +26,7 @@ export const inboxReplyOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get an inbox reply',
+			name: 'Get an Inbox Reply',
 			value: 'getInboxReply',
 			action: 'Get an inbox reply',
 			description: 'Returns a specific inbox reply',

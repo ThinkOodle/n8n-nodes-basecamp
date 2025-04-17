@@ -14,7 +14,7 @@ export const questionOperations: INodeProperties[] = [
 		default: 'getQuestions',
 		options: [
 			{
-				name: 'Get questions',
+				name: 'Get Questions',
 				value: 'getQuestions',
 				action: 'Get questions',
 				description: 'Returns a paginated list of questions in the questionnaire',
@@ -26,7 +26,7 @@ export const questionOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Create a question',
+				name: 'Create a Question',
 				value: 'createQuestion',
 				action: 'Create a question',
 				description: 'Creates a new question in the questionnaire',
@@ -38,7 +38,7 @@ export const questionOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Get a question',
+				name: 'Get a Question',
 				value: 'getQuestion',
 				action: 'Get a question',
 				description: 'Returns a specific question',
@@ -50,7 +50,7 @@ export const questionOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Update a question',
+				name: 'Update a Question',
 				value: 'updateQuestion',
 				action: 'Update a question',
 				description: 'Updates a specific question',
@@ -210,7 +210,6 @@ export const questionFields: INodeProperties[] = [
 		name: 'presentingGroupJson',
 		type: 'string',
 		default: '',
-		required: false,
 		description: 'Array of person IDs who will be asked to answer',
 		displayOptions: {
 			show: {

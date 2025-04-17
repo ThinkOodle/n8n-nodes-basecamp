@@ -14,57 +14,9 @@ export const todoOperations: INodeProperties[] = [
 		default: 'getTodos',
 		options: [
 			{
-				name: 'Get to-dos',
-				value: 'getTodos',
-				action: 'Get to-dos',
-				description: 'Returns a list of to-dos in the specified to-do list',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/todolists/{{ $parameter["todolistId"] }}/todos.json',
-					},
-				},
-			},
-			{
-				name: 'Create a to-do',
-				value: 'createTodo',
-				action: 'Create a to-do',
-				description: 'Creates a new to-do in the specified to-do list',
-				routing: {
-					request: {
-						method: 'POST',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/todolists/{{ $parameter["todolistId"] }}/todos.json',
-					},
-				},
-			},
-			{
-				name: 'Get a to-do',
-				value: 'getTodo',
-				action: 'Get a to-do',
-				description: 'Returns details for a specific to-do',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/todos/{{ $parameter["todoId"] }}.json',
-					},
-				},
-			},
-			{
-				name: 'Update a to-do',
-				value: 'updateTodo',
-				action: 'Update a to-do',
-				description: 'Updates a specific to-do',
-				routing: {
-					request: {
-						method: 'PUT',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/todos/{{ $parameter["todoId"] }}.json',
-					},
-				},
-			},
-			{
-				name: 'Complete a to-do',
+				name: 'Complete a to-Do',
 				value: 'completeTodo',
-				action: 'Complete a to-do',
+				action: 'Complete a to do',
 				description: 'Marks a to-do as completed',
 				routing: {
 					request: {
@@ -74,9 +26,57 @@ export const todoOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Uncomplete a to-do',
+				name: 'Create a to-Do',
+				value: 'createTodo',
+				action: 'Create a to do',
+				description: 'Creates a new to-do in the specified to-do list',
+				routing: {
+					request: {
+						method: 'POST',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/todolists/{{ $parameter["todolistId"] }}/todos.json',
+					},
+				},
+			},
+			{
+				name: 'Get a to-Do',
+				value: 'getTodo',
+				action: 'Get a to do',
+				description: 'Returns details for a specific to-do',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/todos/{{ $parameter["todoId"] }}.json',
+					},
+				},
+			},
+			{
+				name: 'Get to-Dos',
+				value: 'getTodos',
+				action: 'Get to dos',
+				description: 'Returns a list of to-dos in the specified to-do list',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/todolists/{{ $parameter["todolistId"] }}/todos.json',
+					},
+				},
+			},
+			{
+				name: 'Reposition a to-Do',
+				value: 'repositionTodo',
+				action: 'Reposition a to do',
+				description: 'Changes the position of a to-do within its parent list',
+				routing: {
+					request: {
+						method: 'PUT',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/todos/{{ $parameter["todoId"] }}/position.json',
+					},
+				},
+			},
+			{
+				name: 'Uncomplete a to-Do',
 				value: 'uncompleteTodo',
-				action: 'Uncomplete a to-do',
+				action: 'Uncomplete a to do',
 				description: 'Marks a to-do as uncompleted',
 				routing: {
 					request: {
@@ -86,14 +86,14 @@ export const todoOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Reposition a to-do',
-				value: 'repositionTodo',
-				action: 'Reposition a to-do',
-				description: 'Changes the position of a to-do within its parent list',
+				name: 'Update a to-Do',
+				value: 'updateTodo',
+				action: 'Update a to do',
+				description: 'Updates a specific to-do',
 				routing: {
 					request: {
 						method: 'PUT',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/todos/{{ $parameter["todoId"] }}/position.json',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/todos/{{ $parameter["todoId"] }}.json',
 					},
 				},
 			},
@@ -135,7 +135,7 @@ export const todoFields: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'To-do List ID',
+		displayName: 'To-Do List ID',
 		name: 'todolistId',
 		type: 'number',
 		default: 0,
@@ -153,7 +153,6 @@ export const todoFields: INodeProperties[] = [
 		name: 'completed',
 		type: 'string',
 		default: 'true',
-		required: false,
 		description: 'Filter todos by completion status',
 		displayOptions: {
 			show: {
@@ -175,7 +174,6 @@ export const todoFields: INodeProperties[] = [
 		name: 'page',
 		type: 'number',
 		default: 0,
-		required: false,
 		description: 'Page number for paginated results',
 		displayOptions: {
 			show: {
@@ -269,8 +267,7 @@ export const todoFields: INodeProperties[] = [
 		name: 'description',
 		type: 'string',
 		default: '',
-		required: false,
-		description: 'Optional description of the todo. May contain HTML',
+		description: 'Optional description of the todo. May contain HTML.',
 		displayOptions: {
 			show: {
 				resource: ['todo'],
@@ -291,7 +288,6 @@ export const todoFields: INodeProperties[] = [
 		name: 'assigneeIds',
 		type: 'string',
 		default: '',
-		required: false,
 		description: 'IDs of people to assign to this todo',
 		displayOptions: {
 			show: {
@@ -313,7 +309,6 @@ export const todoFields: INodeProperties[] = [
 		name: 'completionSubscriberIds',
 		type: 'string',
 		default: '',
-		required: false,
 		description: 'IDs of people to notify when this todo is completed',
 		displayOptions: {
 			show: {
@@ -335,7 +330,6 @@ export const todoFields: INodeProperties[] = [
 		name: 'notify',
 		type: 'boolean',
 		default: false,
-		required: false,
 		description: 'Whether to notify assignees about being assigned',
 		displayOptions: {
 			show: {
@@ -357,7 +351,6 @@ export const todoFields: INodeProperties[] = [
 		name: 'dueOn',
 		type: 'string',
 		default: '',
-		required: false,
 		description: 'The due date for the todo',
 		displayOptions: {
 			show: {
@@ -379,7 +372,6 @@ export const todoFields: INodeProperties[] = [
 		name: 'startsOn',
 		type: 'string',
 		default: '',
-		required: false,
 		description: 'The date when the todo starts',
 		displayOptions: {
 			show: {
@@ -429,7 +421,7 @@ export const todoFields: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'To-do ID',
+		displayName: 'To-Do ID',
 		name: 'todoId',
 		type: 'number',
 		default: 0,
@@ -578,7 +570,7 @@ export const todoFields: INodeProperties[] = [
 						name: 'description',
 						type: 'string',
 						default: '',
-						description: 'Description of the todo. May contain HTML',
+						description: 'Description of the todo. May contain HTML.',
 						routing: {
 							send: {
 								property: 'description',

@@ -14,19 +14,7 @@ export const messageTypeOperations: INodeProperties[] = [
 		default: 'getMessageTypes',
 		options: [
 		{
-			name: 'Get message types',
-			value: 'getMessageTypes',
-			action: 'Get message types',
-			description: 'Returns all message types in the specified project',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/buckets/{{ $parameter["bucketId"] }}/categories.json'
-				}
-			}
-		},
-		{
-			name: 'Create a message type',
+			name: 'Create a Message Type',
 			value: 'createMessageType',
 			action: 'Create a message type',
 			description: 'Creates a new message type in the specified project',
@@ -38,7 +26,19 @@ export const messageTypeOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Get a message type',
+			name: 'Destroy a Message Type',
+			value: 'destroyMessageType',
+			action: 'Destroy a message type',
+			description: 'Deletes a specific message type',
+			routing: {
+				request: {
+					method: 'DELETE',
+					url: '=/buckets/{{ $parameter["bucketId"] }}/categories/{{ $parameter["categoryId"] }}.json'
+				}
+			}
+		},
+		{
+			name: 'Get a Message Type',
 			value: 'getMessageType',
 			action: 'Get a message type',
 			description: 'Returns a specific message type',
@@ -50,25 +50,25 @@ export const messageTypeOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Update a message type',
+			name: 'Get Message Types',
+			value: 'getMessageTypes',
+			action: 'Get message types',
+			description: 'Returns all message types in the specified project',
+			routing: {
+				request: {
+					method: 'GET',
+					url: '=/buckets/{{ $parameter["bucketId"] }}/categories.json'
+				}
+			}
+		},
+		{
+			name: 'Update a Message Type',
 			value: 'updateMessageType',
 			action: 'Update a message type',
 			description: 'Updates a specific message type',
 			routing: {
 				request: {
 					method: 'PUT',
-					url: '=/buckets/{{ $parameter["bucketId"] }}/categories/{{ $parameter["categoryId"] }}.json'
-				}
-			}
-		},
-		{
-			name: 'Destroy a message type',
-			value: 'destroyMessageType',
-			action: 'Destroy a message type',
-			description: 'Deletes a specific message type',
-			routing: {
-				request: {
-					method: 'DELETE',
 					url: '=/buckets/{{ $parameter["bucketId"] }}/categories/{{ $parameter["categoryId"] }}.json'
 				}
 			}

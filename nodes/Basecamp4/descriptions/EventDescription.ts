@@ -14,11 +14,10 @@ export const eventOperations: INodeProperties[] = [
 		default: 'getEvents',
 		options: [
 			{
-				name: 'Get events',
+				name: 'Get Events',
 				value: 'getEvents',
 				action: 'Get events',
-				description:
-					'Returns a paginated list of events for the specified recording in the specified project.',
+				description: 'Returns a paginated list of events for the specified recording in the specified project',
 				routing: {
 					request: {
 						method: 'GET',

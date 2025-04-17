@@ -14,7 +14,7 @@ export const messageOperations: INodeProperties[] = [
 		default: 'getMessages',
 		options: [
 			{
-				name: 'Get messages',
+				name: 'Get Messages',
 				value: 'getMessages',
 				action: 'Get messages',
 				description: 'Returns a list of messages in the specified message board',
@@ -26,7 +26,7 @@ export const messageOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Create a message',
+				name: 'Create a Message',
 				value: 'createMessage',
 				action: 'Create a message',
 				description: 'Creates a new message in the specified message board',
@@ -38,7 +38,7 @@ export const messageOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Get a message',
+				name: 'Get a Message',
 				value: 'getMessage',
 				action: 'Get a message',
 				description: 'Returns details for a specific message',
@@ -50,7 +50,7 @@ export const messageOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Update a message',
+				name: 'Update a Message',
 				value: 'updateMessage',
 				action: 'Update a message',
 				description: 'Updates a specific message',
@@ -211,8 +211,7 @@ export const messageFields: INodeProperties[] = [
 			editor: 'htmlEditor',
 		},
 		default: '',
-		required: false,
-		description: 'The body of the message. May contain HTML',
+		description: 'The body of the message. May contain HTML.',
 		displayOptions: {
 			show: {
 				resource: ['message'],
@@ -233,8 +232,7 @@ export const messageFields: INodeProperties[] = [
 		name: 'categoryId',
 		type: 'number',
 		default: 0,
-		required: false,
-		description: 'Optional. The ID of the message type/category',
+		description: 'Optional. The ID of the message type/category.',
 		displayOptions: {
 			show: {
 				resource: ['message'],
@@ -255,8 +253,7 @@ export const messageFields: INodeProperties[] = [
 		name: 'subscriptions',
 		type: 'string',
 		default: '',
-		required: false,
-		description: 'Optional. IDs of people to be notified of the new message',
+		description: 'Optional. IDs of people to be notified of the new message.',
 		displayOptions: {
 			show: {
 				resource: ['message'],
@@ -415,7 +412,7 @@ export const messageFields: INodeProperties[] = [
 							editor: 'htmlEditor',
 						},
 						default: '',
-						description: 'The body of the message. May contain HTML',
+						description: 'The body of the message. May contain HTML.',
 						routing: {
 							send: {
 								property: 'content',

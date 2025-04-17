@@ -14,31 +14,7 @@ export const cardTableOperations: INodeProperties[] = [
 		default: 'getCardTable',
 		options: [
 			{
-				name: 'Get a card table',
-				value: 'getCardTable',
-				action: 'Get a card table',
-				description: 'Returns a specific card table',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/{{ $parameter["cardTableId"] }}.json',
-					},
-				},
-			},
-			{
-				name: 'Get cards in a column',
-				value: 'getCardsInColumn',
-				action: 'Get cards in a column',
-				description: 'Returns a paginated list of cards in a specific column',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/lists/{{ $parameter["columnId"] }}/cards.json',
-					},
-				},
-			},
-			{
-				name: 'Create a card',
+				name: 'Create a Card',
 				value: 'createCard',
 				action: 'Create a card',
 				description: 'Creates a new card in a specific column',
@@ -50,67 +26,7 @@ export const cardTableOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Get a card',
-				value: 'getCard',
-				action: 'Get a card',
-				description: 'Returns details of a specific card',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/cards/{{ $parameter["cardId"] }}.json',
-					},
-				},
-			},
-			{
-				name: 'Update a card',
-				value: 'updateCard',
-				action: 'Update a card',
-				description: 'Updates a specific card',
-				routing: {
-					request: {
-						method: 'PUT',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/cards/{{ $parameter["cardId"] }}.json',
-					},
-				},
-			},
-			{
-				name: 'Move a card',
-				value: 'moveCard',
-				action: 'Move a card',
-				description: 'Moves a card to a different column',
-				routing: {
-					request: {
-						method: 'POST',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/cards/{{ $parameter["cardId"] }}/moves.json',
-					},
-				},
-			},
-			{
-				name: 'Get a column',
-				value: 'getColumn',
-				action: 'Get a column',
-				description: 'Returns a specific column in a card table',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/lists/{{ $parameter["columnId"] }}.json',
-					},
-				},
-			},
-			{
-				name: 'Update a column',
-				value: 'updateColumn',
-				action: 'Update a column',
-				description: 'Updates a specific column in a card table',
-				routing: {
-					request: {
-						method: 'PUT',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/lists/{{ $parameter["columnId"] }}.json',
-					},
-				},
-			},
-			{
-				name: 'Create a column',
+				name: 'Create a Column',
 				value: 'createColumn',
 				action: 'Create a column',
 				description: 'Creates a new column in a card table',
@@ -122,7 +38,67 @@ export const cardTableOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Move a column',
+				name: 'Get a Card',
+				value: 'getCard',
+				action: 'Get a card',
+				description: 'Returns details of a specific card',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/cards/{{ $parameter["cardId"] }}.json',
+					},
+				},
+			},
+			{
+				name: 'Get a Card Table',
+				value: 'getCardTable',
+				action: 'Get a card table',
+				description: 'Returns a specific card table',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/{{ $parameter["cardTableId"] }}.json',
+					},
+				},
+			},
+			{
+				name: 'Get a Column',
+				value: 'getColumn',
+				action: 'Get a column',
+				description: 'Returns a specific column in a card table',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/lists/{{ $parameter["columnId"] }}.json',
+					},
+				},
+			},
+			{
+				name: 'Get Cards in a Column',
+				value: 'getCardsInColumn',
+				action: 'Get cards in a column',
+				description: 'Returns a paginated list of cards in a specific column',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/lists/{{ $parameter["columnId"] }}/cards.json',
+					},
+				},
+			},
+			{
+				name: 'Move a Card',
+				value: 'moveCard',
+				action: 'Move a card',
+				description: 'Moves a card to a different column',
+				routing: {
+					request: {
+						method: 'POST',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/cards/{{ $parameter["cardId"] }}/moves.json',
+					},
+				},
+			},
+			{
+				name: 'Move a Column',
 				value: 'moveColumn',
 				action: 'Move a column',
 				description: 'Moves a column to a new position in the card table',
@@ -130,6 +106,30 @@ export const cardTableOperations: INodeProperties[] = [
 					request: {
 						method: 'POST',
 						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/{{ $parameter["cardTableId"] }}/moves.json',
+					},
+				},
+			},
+			{
+				name: 'Update a Card',
+				value: 'updateCard',
+				action: 'Update a card',
+				description: 'Updates a specific card',
+				routing: {
+					request: {
+						method: 'PUT',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/cards/{{ $parameter["cardId"] }}.json',
+					},
+				},
+			},
+			{
+				name: 'Update a Column',
+				value: 'updateColumn',
+				action: 'Update a column',
+				description: 'Updates a specific column in a card table',
+				routing: {
+					request: {
+						method: 'PUT',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/card_tables/lists/{{ $parameter["columnId"] }}.json',
 					},
 				},
 			},
@@ -307,7 +307,6 @@ export const cardTableFields: INodeProperties[] = [
 			editor: 'htmlEditor',
 		},
 		default: '',
-		required: false,
 		displayOptions: {
 			show: {
 				resource: ['cardTable'],
@@ -328,7 +327,6 @@ export const cardTableFields: INodeProperties[] = [
 		name: 'dueOn',
 		type: 'string',
 		default: '',
-		required: false,
 		displayOptions: {
 			show: {
 				resource: ['cardTable'],
@@ -349,7 +347,6 @@ export const cardTableFields: INodeProperties[] = [
 		name: 'notify',
 		type: 'boolean',
 		default: false,
-		required: false,
 		displayOptions: {
 			show: {
 				resource: ['cardTable'],
@@ -824,7 +821,7 @@ export const cardTableFields: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'title',
+		displayName: 'Title',
 		name: 'title',
 		type: 'string',
 		default: '',
@@ -845,11 +842,10 @@ export const cardTableFields: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'description',
+		displayName: 'Description',
 		name: 'description',
 		type: 'string',
 		default: '',
-		required: false,
 		displayOptions: {
 			show: {
 				resource: ['cardTable'],
@@ -959,7 +955,6 @@ export const cardTableFields: INodeProperties[] = [
 		name: 'position',
 		type: 'number',
 		default: 0,
-		required: false,
 		displayOptions: {
 			show: {
 				resource: ['cardTable'],

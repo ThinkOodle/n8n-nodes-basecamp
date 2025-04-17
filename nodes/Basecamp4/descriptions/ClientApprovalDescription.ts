@@ -14,19 +14,7 @@ export const clientApprovalOperations: INodeProperties[] = [
 		default: 'getClientApprovals',
 		options: [
 		{
-			name: 'Get client approvals',
-			value: 'getClientApprovals',
-			action: 'Get client approvals',
-			description: 'Returns a paginated list of client approvals in the project',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/buckets/{{ $parameter["bucketId"] }}/client/approvals.json'
-				}
-			}
-		},
-		{
-			name: 'Get a client approval',
+			name: 'Get a Client Approval',
 			value: 'getClientApproval',
 			action: 'Get a client approval',
 			description: 'Returns a specific client approval',
@@ -34,6 +22,18 @@ export const clientApprovalOperations: INodeProperties[] = [
 				request: {
 					method: 'GET',
 					url: '=/buckets/{{ $parameter["bucketId"] }}/client/approvals/{{ $parameter["approvalId"] }}.json'
+				}
+			}
+		},
+		{
+			name: 'Get Client Approvals',
+			value: 'getClientApprovals',
+			action: 'Get client approvals',
+			description: 'Returns a paginated list of client approvals in the project',
+			routing: {
+				request: {
+					method: 'GET',
+					url: '=/buckets/{{ $parameter["bucketId"] }}/client/approvals.json'
 				}
 			}
 		}
@@ -92,7 +92,7 @@ export const clientApprovalFields: INodeProperties[] = [
 	         ClientApproval: getClientApproval Parameters
 	----------------------------------------*/
 	{
-		displayName: 'bucketId',
+		displayName: 'Project ID',
 		name: 'bucketId',
 		type: 'number',
 		default: 0,

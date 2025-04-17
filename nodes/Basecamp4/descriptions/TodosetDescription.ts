@@ -14,9 +14,9 @@ export const todosetOperations: INodeProperties[] = [
 		default: 'getTodoset',
 		options: [
 		{
-			name: 'Get to-do set',
+			name: 'Get to-Do Set',
 			value: 'getTodoset',
-			action: 'Get to-do set',
+			action: 'Get to do set',
 			description: 'Returns the to-do set for the specified project',
 			routing: {
 				request: {
@@ -62,7 +62,7 @@ export const todosetFields: INodeProperties[] = [
 		}
 	},
 	{
-		displayName: 'To-do Set ID',
+		displayName: 'To-Do Set ID',
 		name: 'todosetId',
 		type: 'number',
 		default: 0,

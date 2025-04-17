@@ -14,9 +14,9 @@ export const todolistGroupOperations: INodeProperties[] = [
 		default: 'getTodolistGroups',
 		options: [
 		{
-			name: 'List to-do list groups',
+			name: 'List to-Do List Groups',
 			value: 'getTodolistGroups',
-			action: 'List to-do list groups',
+			action: 'List to do list groups',
 			description: 'Returns a paginated list of active groups in the to-do list',
 			routing: {
 				request: {
@@ -26,9 +26,9 @@ export const todolistGroupOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Create a to-do list group',
+			name: 'Create a to-Do List Group',
 			value: 'createTodolistGroup',
-			action: 'Create a to-do list group',
+			action: 'Create a to do list group',
 			description: 'Creates a to-do group within the specified to-do list',
 			routing: {
 				request: {
@@ -38,9 +38,9 @@ export const todolistGroupOperations: INodeProperties[] = [
 			}
 		},
 		{
-			name: 'Reposition a to-do list group',
+			name: 'Reposition a to-Do List Group',
 			value: 'repositionTodolistGroup',
-			action: 'Reposition a to-do list group',
+			action: 'Reposition a to do list group',
 			description: 'Changes the position of the to-do list group',
 			routing: {
 				request: {
@@ -86,7 +86,7 @@ export const todolistGroupFields: INodeProperties[] = [
 		}
 	},
 	{
-		displayName: 'To-do List ID',
+		displayName: 'To-Do List ID',
 		name: 'todolistId',
 		type: 'number',
 		default: 0,
@@ -104,7 +104,6 @@ export const todolistGroupFields: INodeProperties[] = [
 		name: 'status',
 		type: 'string',
 		default: "archived",
-		required: false,
 		description: 'Filter by to-do list group status',
 		displayOptions: {
 			show: {
@@ -192,9 +191,8 @@ export const todolistGroupFields: INodeProperties[] = [
 	{
 		displayName: 'Color',
 		name: 'color',
-		type: 'string',
+		type: 'color',
 		default: "",
-		required: false,
 		description: 'The color of the to-do list group',
 		displayOptions: {
 			show: {

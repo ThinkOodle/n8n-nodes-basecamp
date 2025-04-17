@@ -14,24 +14,10 @@ export const chatbotOperations: INodeProperties[] = [
 		default: 'getChatbots',
 		options: [
 			{
-				name: 'Get all chatbots',
-				value: 'getChatbots',
-				action: 'Get all chatbots',
-				description:
-					'Returns all the chatbots from the account with the line URL for the campfire on the specified basecamp.',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/integrations.json',
-					},
-				},
-			},
-			{
-				name: 'Create a chatbot',
+				name: 'Create a Chatbot',
 				value: 'createChatbot',
 				action: 'Create a chatbot',
-				description:
-					'Creates a chatbot on the account and returns the new chatbot with the lines URL from the specified project.',
+				description: 'Creates a chatbot on the account and returns the new chatbot with the lines URL from the specified project',
 				routing: {
 					request: {
 						method: 'POST',
@@ -40,36 +26,22 @@ export const chatbotOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Get a chatbot',
-				value: 'getChatbot',
-				action: 'Get a chatbot',
-				description:
-					'Returns the chatbot with the specified ID with the line URL from the specified project.',
+				name: 'Create a Chatbot Line',
+				value: 'createChatbotLine',
+				action: 'Create a chatbot line',
+				description: 'Creates a line in the specified Campfire using the chatbot key',
 				routing: {
 					request: {
-						method: 'GET',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/integrations/{{ $parameter["integrationId"] }}.json',
+						method: 'POST',
+						url: '=/integrations/{{ $parameter["chatbotKey"] }}/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/lines.json',
 					},
 				},
 			},
 			{
-				name: 'Update a chatbot',
-				value: 'updateChatbot',
-				action: 'Update a chatbot',
-				description:
-					'Allows changing the service name and commandURL of the specified chatbot in the specified project.',
-				routing: {
-					request: {
-						method: 'PUT',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/integrations/{{ $parameter["integrationId"] }}.json',
-					},
-				},
-			},
-			{
-				name: 'Delete a chatbot',
+				name: 'Delete a Chatbot',
 				value: 'deleteChatbot',
 				action: 'Delete a chatbot',
-				description: 'Deletes the specified chatbot across the account.',
+				description: 'Deletes the specified chatbot across the account',
 				routing: {
 					request: {
 						method: 'DELETE',
@@ -78,14 +50,38 @@ export const chatbotOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Create a chatbot line',
-				value: 'createChatbotLine',
-				action: 'Create a chatbot line',
-				description: 'Creates a line in the specified Campfire using the chatbot key.',
+				name: 'Get a Chatbot',
+				value: 'getChatbot',
+				action: 'Get a chatbot',
+				description: 'Returns the chatbot with the specified ID with the line URL from the specified project',
 				routing: {
 					request: {
-						method: 'POST',
-						url: '=/integrations/{{ $parameter["chatbotKey"] }}/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/lines.json',
+						method: 'GET',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/integrations/{{ $parameter["integrationId"] }}.json',
+					},
+				},
+			},
+			{
+				name: 'Get All Chatbots',
+				value: 'getChatbots',
+				action: 'Get all chatbots',
+				description: 'Returns all the chatbots from the account with the line URL for the campfire on the specified basecamp',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/integrations.json',
+					},
+				},
+			},
+			{
+				name: 'Update a Chatbot',
+				value: 'updateChatbot',
+				action: 'Update a chatbot',
+				description: 'Allows changing the service name and commandURL of the specified chatbot in the specified project',
+				routing: {
+					request: {
+						method: 'PUT',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/integrations/{{ $parameter["integrationId"] }}.json',
 					},
 				},
 			},
@@ -193,8 +189,7 @@ export const chatbotFields: INodeProperties[] = [
 		type: 'string',
 		default: '',
 		required: true,
-		description:
-			'The name of the chatbot service, which will be used to invoke queries and commands.  No spaces, emoji or non-word charac...',
+		description: 'The name of the chatbot service, which will be used to invoke queries and commands. No spaces, emoji or non-word charac...',
 		displayOptions: {
 			show: {
 				resource: ['chatbot'],
@@ -215,7 +210,6 @@ export const chatbotFields: INodeProperties[] = [
 		name: 'commandUrl',
 		type: 'string',
 		default: '',
-		required: false,
 		description: 'The HTTPS URL that Basecamp should call when the bot is addressed',
 		displayOptions: {
 			show: {
@@ -545,8 +539,7 @@ export const chatbotFields: INodeProperties[] = [
 		},
 		default: '',
 		required: true,
-		description:
-			'The body for the Campfire line. HTML formatting is supported including additional tags  for chatbot lines: table, tr, td...',
+		description: 'The body for the Campfire line. HTML formatting is supported including additional tags for chatbot lines: table, tr, td...',
 		displayOptions: {
 			show: {
 				resource: ['chatbot'],
@@ -567,7 +560,6 @@ export const chatbotFields: INodeProperties[] = [
 		name: 'contentParam',
 		type: 'string',
 		default: '',
-		required: false,
 		description:
 			"Modifies the name of the required 'content' param to support webhooks from a third-party",
 		displayOptions: {

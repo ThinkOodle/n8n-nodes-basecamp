@@ -14,45 +14,9 @@ export const campfireOperations: INodeProperties[] = [
 		default: 'getCampfires',
 		options: [
 			{
-				name: 'Get Campfires',
-				value: 'getCampfires',
-				action: 'Get Campfires',
-				description: 'Returns a paginated list of all active Campfires visible to the current user',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '=/chats.json',
-					},
-				},
-			},
-			{
-				name: 'Get a Campfire',
-				value: 'getCampfire',
-				action: 'Get a Campfire',
-				description: 'Returns the Campfire with the specified ID',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}.json',
-					},
-				},
-			},
-			{
-				name: 'Get Campfire lines',
-				value: 'getCampfireLines',
-				action: 'Get Campfire lines',
-				description: 'Returns a paginated list of lines in the Campfire',
-				routing: {
-					request: {
-						method: 'GET',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/lines.json',
-					},
-				},
-			},
-			{
-				name: 'Create a Campfire line',
+				name: 'Create a Campfire Line',
 				value: 'createCampfireLine',
-				action: 'Create a Campfire line',
+				action: 'Create a campfire line',
 				description: 'Creates a new line in the Campfire',
 				routing: {
 					request: {
@@ -62,9 +26,33 @@ export const campfireOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Get a Campfire line',
+				name: 'Delete a Campfire Line',
+				value: 'deleteCampfireLine',
+				action: 'Delete a campfire line',
+				description: 'Deletes a specific line from the Campfire',
+				routing: {
+					request: {
+						method: 'DELETE',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/lines/{{ $parameter["lineId"] }}.json',
+					},
+				},
+			},
+			{
+				name: 'Get a Campfire',
+				value: 'getCampfire',
+				action: 'Get a campfire',
+				description: 'Returns the Campfire with the specified ID',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}.json',
+					},
+				},
+			},
+			{
+				name: 'Get a Campfire Line',
 				value: 'getCampfireLine',
-				action: 'Get a Campfire line',
+				action: 'Get a campfire line',
 				description: 'Returns a specific line in the Campfire',
 				routing: {
 					request: {
@@ -74,14 +62,26 @@ export const campfireOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Delete a Campfire line',
-				value: 'deleteCampfireLine',
-				action: 'Delete a Campfire line',
-				description: 'Deletes a specific line from the Campfire',
+				name: 'Get Campfire Lines',
+				value: 'getCampfireLines',
+				action: 'Get campfire lines',
+				description: 'Returns a paginated list of lines in the Campfire',
 				routing: {
 					request: {
-						method: 'DELETE',
-						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/lines/{{ $parameter["lineId"] }}.json',
+						method: 'GET',
+						url: '=/buckets/{{ $parameter["bucketId"] }}/chats/{{ $parameter["chatId"] }}/lines.json',
+					},
+				},
+			},
+			{
+				name: 'Get Campfires',
+				value: 'getCampfires',
+				action: 'Get campfires',
+				description: 'Returns a paginated list of all active Campfires visible to the current user',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/chats.json',
 					},
 				},
 			},

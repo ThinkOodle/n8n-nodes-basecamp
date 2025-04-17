@@ -14,10 +14,10 @@ export const clientVisibilityOperations: INodeProperties[] = [
 		default: 'toggleClientVisibility',
 		options: [
 		{
-			name: 'Toggle client visibility',
+			name: 'Toggle Client Visibility',
 			value: 'toggleClientVisibility',
 			action: 'Toggle client visibility',
-			description: 'Changes the client visibility for the specified recording in the specified project.',
+			description: 'Changes the client visibility for the specified recording in the specified project',
 			routing: {
 				request: {
 					method: 'PUT',
@@ -76,7 +76,7 @@ export const clientVisibilityFields: INodeProperties[] = [
 		}
 	},
 	{
-		displayName: 'visible_to_clients',
+		displayName: 'Visible to Clients',
 		name: 'visibleToClients',
 		type: 'boolean',
 		default: false,

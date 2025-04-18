@@ -1,7 +1,7 @@
 {
-	"name": "@thinkoodle/n8n-nodes-basecamp-4",
+	"name": "n8n-nodes-basecamp",
 	"version": "0.1.5",
-	"description": "Basecamp 4 API Node for n8n",
+	"description": "Basecamp API Node for n8n",
 	"keywords": [
 		"n8n-community-node-package"
 	],
@@ -13,7 +13,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ThinkOodle/n8n-nodes-basecamp-4.git"
+		"url": "https://github.com/ThinkOodle/n8n-nodes-basecamp.git"
 	},
 	"engines": {
 		"node": ">=18.10",

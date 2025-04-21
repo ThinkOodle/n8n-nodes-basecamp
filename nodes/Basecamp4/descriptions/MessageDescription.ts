@@ -251,9 +251,9 @@ export const messageFields: INodeProperties[] = [
 	{
 		displayName: 'Notification Recipients',
 		name: 'subscriptions',
-		type: 'string',
-		default: '',
-		description: 'Optional. IDs of people to be notified of the new message.',
+		type: 'json',
+		default: '[]',
+		description: 'Optional. IDs of people to be notified of the new message. Enter as array like [2,3]',
 		displayOptions: {
 			show: {
 				resource: ['message'],

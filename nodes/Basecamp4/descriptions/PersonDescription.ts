@@ -13,80 +13,68 @@ export const personOperations: INodeProperties[] = [
 		},
 		default: 'getPeople',
 		options: [
-		{
-			name: 'Get a Person',
-			value: 'getPerson',
-			action: 'Get a person',
-			description: 'Returns the profile information for a specific person',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/people/{{ $parameter["personId"] }}.json'
-				}
-			}
-		},
-		{
-			name: 'Get My Profile',
-			value: 'getMyProfile',
-			action: 'Get my profile',
-			description: 'Returns the profile of the current user',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/my/profile.json'
-				}
-			}
-		},
-		{
-			name: 'Get People',
-			value: 'getPeople',
-			action: 'Get people',
-			description: 'Returns a list of all people visible to the current user',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/people.json'
-				}
-			}
-		},
-		{
-			name: 'Get People in My Company/firm',
-			value: 'getCompanyPeople',
-			action: 'Get people in my company firm',
-			description: 'Returns a list of people in the current user\'s company/firm',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/my/company/people.json'
-				}
-			}
-		},
-		{
-			name: 'Get People on a Project',
-			value: 'getProjectPeople',
-			action: 'Get people on a project',
-			description: 'Returns a list of people with access to a specific project',
-			routing: {
-				request: {
-					method: 'GET',
-					url: '=/projects/{{ $parameter["projectId"] }}/people.json'
-				}
-			}
-		},
-		{
-			name: 'Manage People on a Project',
-			value: 'manageProjectUsers',
-			action: 'Manage people on a project',
-			description: 'Grant and revoke people\'s access to a project',
-			routing: {
-				request: {
-					method: 'PUT',
-					url: '=/projects/{{ $parameter["projectId"] }}/people/users.json'
-				}
-			}
-		}
+			{
+				name: 'Get a Person',
+				value: 'getPerson',
+				action: 'Get a person',
+				description: 'Returns the profile information for a specific person',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/people/{{ $parameter["personId"] }}.json',
+					},
+				},
+			},
+			{
+				name: 'Get My Profile',
+				value: 'getMyProfile',
+				action: 'Get my profile',
+				description: 'Returns the profile of the current user',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/my/profile.json',
+					},
+				},
+			},
+			{
+				name: 'Get People',
+				value: 'getPeople',
+				action: 'Get people',
+				description: 'Returns a list of all people visible to the current user',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/people.json',
+					},
+				},
+			},
+			{
+				name: 'Get People on a Project',
+				value: 'getProjectPeople',
+				action: 'Get people on a project',
+				description: 'Returns a list of people with access to a specific project',
+				routing: {
+					request: {
+						method: 'GET',
+						url: '=/projects/{{ $parameter["projectId"] }}/people.json',
+					},
+				},
+			},
+			{
+				name: 'Manage People on a Project',
+				value: 'manageProjectUsers',
+				action: 'Manage people on a project',
+				description: "Grant and revoke people's access to a project",
+				routing: {
+					request: {
+						method: 'PUT',
+						url: '=/projects/{{ $parameter["projectId"] }}/people/users.json',
+					},
+				},
+			},
 		],
-	}
+	},
 ];
 export const personFields: INodeProperties[] = [
 	{
@@ -100,9 +88,9 @@ export const personFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['getPeople']
-			}
-		}
+				operation: ['getPeople'],
+			},
+		},
 	},
 	{
 		displayName: 'GET /people/{{ $parameter["personId"] }}.json',
@@ -115,9 +103,9 @@ export const personFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['getPerson']
-			}
-		}
+				operation: ['getPerson'],
+			},
+		},
 	},
 	/*----------------------------------------
 	         Person: getPerson Parameters
@@ -131,10 +119,10 @@ export const personFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['getPerson']
-			}
+				operation: ['getPerson'],
+			},
 		},
-		description: 'Used in the API endpoint path'
+		description: 'Used in the API endpoint path',
 	},
 	{
 		displayName: 'GET /my/profile.json',
@@ -147,9 +135,9 @@ export const personFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['getMyProfile']
-			}
-		}
+				operation: ['getMyProfile'],
+			},
+		},
 	},
 	{
 		displayName: 'GET /projects/{{ $parameter["projectId"] }}/people.json',
@@ -162,9 +150,9 @@ export const personFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['getProjectPeople']
-			}
-		}
+				operation: ['getProjectPeople'],
+			},
+		},
 	},
 	/*----------------------------------------
 	         Person: getProjectPeople Parameters
@@ -178,10 +166,10 @@ export const personFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['getProjectPeople']
-			}
+				operation: ['getProjectPeople'],
+			},
 		},
-		description: 'Used in the API endpoint path'
+		description: 'Used in the API endpoint path',
 	},
 	{
 		displayName: 'PUT /projects/{{ $parameter["projectId"] }}/people/users.json',
@@ -194,9 +182,9 @@ export const personFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['manageProjectUsers']
-			}
-		}
+				operation: ['manageProjectUsers'],
+			},
+		},
 	},
 	/*----------------------------------------
 	         Person: manageProjectUsers Parameters
@@ -210,22 +198,22 @@ export const personFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['manageProjectUsers']
-			}
+				operation: ['manageProjectUsers'],
+			},
 		},
-		description: 'Used in the API endpoint path'
+		description: 'Used in the API endpoint path',
 	},
 	{
 		displayName: 'Grant Access To',
 		name: 'grant',
 		type: 'string',
-		default: "{}",
+		default: '{}',
 		description: 'Array of people IDs to be granted access',
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['manageProjectUsers']
-			}
+				operation: ['manageProjectUsers'],
+			},
 		},
 		routing: {
 			send: {
@@ -233,20 +221,20 @@ export const personFields: INodeProperties[] = [
 				propertyInDotNotation: false,
 				type: 'body',
 				value: '={{ $value }}',
-			}
-		}
+			},
+		},
 	},
 	{
 		displayName: 'Revoke Access From',
 		name: 'revoke',
 		type: 'string',
-		default: "{}",
+		default: '{}',
 		description: 'Array of people IDs to be revoked access',
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['manageProjectUsers']
-			}
+				operation: ['manageProjectUsers'],
+			},
 		},
 		routing: {
 			send: {
@@ -254,20 +242,20 @@ export const personFields: INodeProperties[] = [
 				propertyInDotNotation: false,
 				type: 'body',
 				value: '={{ $value }}',
-			}
-		}
+			},
+		},
 	},
 	{
 		displayName: 'Create People',
 		name: 'create',
 		type: 'string',
-		default: "{}",
+		default: '{}',
 		description: 'Array of new people to be created',
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['manageProjectUsers']
-			}
+				operation: ['manageProjectUsers'],
+			},
 		},
 		routing: {
 			send: {
@@ -275,8 +263,8 @@ export const personFields: INodeProperties[] = [
 				propertyInDotNotation: false,
 				type: 'body',
 				value: '={{ $value }}',
-			}
-		}
+			},
+		},
 	},
 	{
 		displayName: 'GET /my/company/people.json',
@@ -289,8 +277,8 @@ export const personFields: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['person'],
-				operation: ['getCompanyPeople']
-			}
-		}
-	}
+				operation: ['getCompanyPeople'],
+			},
+		},
+	},
 ];

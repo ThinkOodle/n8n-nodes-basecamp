@@ -1,4 +1,4 @@
-# n8n-nodes-basecamp-4
+# n8n-nodes-basecamp
 
 This is an n8n community node. It lets you use Basecamp 4 (v3/v4) in your n8n workflows.
 

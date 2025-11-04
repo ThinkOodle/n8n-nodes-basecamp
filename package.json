@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-basecamp",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "Basecamp API Node for n8n",
 	"keywords": [
 		"n8n-community-node-package"
@@ -9,7 +9,7 @@
 	"homepage": "",
 	"author": {
 		"name": "Ryan Hughes",
-		"email": "1630358+ryanrhughes@users.noreply.github.com"
+		"email": "ryan@heyoodle.com"
 	},
 	"repository": {
 		"type": "git",

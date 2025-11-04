@@ -372,10 +372,10 @@ export const templateFields: INodeProperties[] = [
 		description: 'Used in the API endpoint path'
 	},
 	{
-		displayName: 'Project',
-		name: 'project',
+		displayName: 'Project Name',
+		name: 'projectName',
 		type: 'string',
-		default: "{}",
+		default: "",
 		required: true,
 		displayOptions: {
 			show: {
@@ -385,8 +385,28 @@ export const templateFields: INodeProperties[] = [
 		},
 		routing: {
 			send: {
-				property: 'project',
-				propertyInDotNotation: false,
+				property: 'project.name',
+				propertyInDotNotation: true,
+				type: 'body',
+				value: '={{ $value }}',
+			}
+		}
+	},
+	{
+		displayName: 'Project Description',
+		name: 'projectDescription',
+		type: 'string',
+		default: "",
+		displayOptions: {
+			show: {
+				resource: ['template'],
+				operation: ['createProjectConstruction']
+			}
+		},
+		routing: {
+			send: {
+				property: 'project.description',
+				propertyInDotNotation: true,
 				type: 'body',
 				value: '={{ $value }}',
 			}
